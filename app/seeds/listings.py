@@ -55,7 +55,7 @@ def seed_listings():
         close_hours="6:00",
         image_url="https://s3-media0.fl.yelpcdn.com/bphoto/RO20NATp5RoHgorVhSWqqw/o.jpg"
         )
-    westfield_san_francisco_centre = Listing(
+    westfield_centre = Listing(
         owner_id=2,
         address="865 Market St",
         city="San Francisco",
@@ -120,7 +120,7 @@ def seed_listings():
         close_hours="6:00",
         image_url="https://s3-media0.fl.yelpcdn.com/bphoto/hsnS0_XLlqKiVZqHF0nR3Q/o.jpg"
         )
-    senspa = Listing(
+    sen_spa = Listing(
         owner_id=3,
         address="1161 Gorgas Ave",
         city="San Francisco",
@@ -133,7 +133,7 @@ def seed_listings():
         close_hours="6:00",
         image_url="https://s3-media0.fl.yelpcdn.com/bphoto/AUu3TkM11rxytgArETXxhg/o.jpg"
         )
-    kabuki_springs_spa = Listing(
+    kabuki_spa = Listing(
         owner_id=2,
         address="1750 Geary Blvd",
         city="San Francisco",
@@ -199,7 +199,7 @@ def seed_listings():
         image_url="https://s3-media0.fl.yelpcdn.com/bphoto/PL3lQgpk2fNNEQDDeV64tw/o.jpg"
         )
 
-    listings = [panda_express, popeyes, buffalo_wild_wings, applebees, dennys, mcdonalds, burger_king, shake_shack, starbucks, dunkin, round_table, pizza_hut, taco_bell, chipotle, panera]
+    listings = [lazy_dog, in_n_out, the_habit, daiso_japan, westfield_centre, cityscape, cheaper_than_therapy, twin_peaks, dogpatch_boulders, sen_spa, kabuki_spa, sunset_76, international_motors, peace_by_piece, architect]
     add_listing = [db.session.add(listing) for listing in listings]
     db.session.commit()
 
