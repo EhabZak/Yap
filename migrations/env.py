@@ -108,8 +108,8 @@ def run_migrations_online():
             **current_app.extensions['migrate'].configure_args
         )
 
-        with context.begin_transaction():
-            context.run_migrations()
+        # with context.begin_transaction():
+        #     context.run_migrations()
 
 #! //////////////////////////////////////////////////////
         # Create a schema (only in production)
