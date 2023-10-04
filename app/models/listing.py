@@ -15,6 +15,7 @@ class Listing(db.Model):
     state = db.Column(db.String(100), nullable=False)
     name = db.Column(db.String(100), nullable=False)
     category = db.Column(db.String(50), nullable=False)
+    description = db.Column(db.String(255), nullable=False)
     price = db.Column(db.Integer, nullable=False)
     open_hours = db.Column(db.String, nullable=False)
     close_hours = db.Column(db.String, nullable=False)
@@ -25,7 +26,6 @@ class Listing(db.Model):
     #!relationships
 
     user = db.relationship("User", back_populates = "listing")
-    # menu_item = db.relationship("MenuItem", back_populates="listing", cascade="all, delete-orphan")
     reviews = db.relationship("Review", back_populates = "listing", cascade="all, delete-orphan")
 
     def to_dict(self):
@@ -37,6 +37,7 @@ class Listing(db.Model):
             'state': self.state,
             'name': self.name,
             'category': self.category,
+            'description': self.description,
             'price': self.price,
             'open_hours': self.open_hours,
             'close_hours': self.close_hours,
