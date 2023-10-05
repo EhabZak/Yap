@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import { Listings } from "./components/Listing";
 import { ListingDetails } from "./components/ListingDetails";
+import { CreateListing } from "./components/Listing/CreateListing";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route exact path="/">
             <Listings />
+          </Route>
+          <Route exact path="/listings/new">
+            <CreateListing/>
           </Route>
           <Route exact path="/listings/:listingId">
             <ListingDetails />
