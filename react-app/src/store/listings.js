@@ -3,10 +3,10 @@ import { csrfFetch } from "./csrf";
 // TYPE CONSTANTS
 
 const GET_LISTINGS = "listings/getListings";
-// const GET_RESTAURANT = "restaurants/getRestaurant";
-// const CREATE_RESTAURANT = "restaurants/createRestaurant";
-// const UPDATE_RESTAURANT = "restaurants/updateRestaurant";
-// const DELETE_RESTAURANT = "restaurants/deleteRestaurant";
+const GET_LISTING = "listings/getListing";
+const CREATE_LISTING = "listings/createListing";
+const UPDATE_LISTING = "listings/updateListing";
+const DELETE_LISTING = "listings/deleteListing";
 
 // ACTION CREATORS
 
@@ -17,33 +17,33 @@ const getListings = (listings) => {
   };
 };
 
-// const getRestaurant = (restaurant) => {
-//   return {
-//     type: GET_RESTAURANT,
-//     restaurant,
-//   };
-// };
+const getListing = (listing) => {
+  return {
+    type: GET_LISTING,
+    listing,
+  };
+};
 
-// const createRestaurant = (restaurant) => {
-//   return {
-//     type: CREATE_RESTAURANT,
-//     restaurant,
-//   };
-// };
+const createListing = (listing) => {
+  return {
+    type: CREATE_LISTING,
+    listing,
+  };
+};
 
-// const updateRestaurant = (restaurant) => {
-//   return {
-//     type: UPDATE_RESTAURANT,
-//     restaurant,
-//   };
-// };
+const updateListing = (listing) => {
+  return {
+    type: UPDATE_LISTING,
+    listing,
+  };
+};
 
-// const deleteRestaurant = (restaurantId) => {
-//   return {
-//     type: DELETE_RESTAURANT,
-//     restaurantId,
-//   };
-// };
+const deleteListing = (listingId) => {
+  return {
+    type: DELETE_LISTING,
+    listingId,
+  };
+};
 
 //! THUNK ACTION CREATORS
 
@@ -60,74 +60,74 @@ export const thunkGetListings = () => async (dispatch) => {
   }
 };
 
-// export const thunkGetRestaurantInfo = (restaurantId) => async (dispatch) => {
-//   const res = await csrfFetch(`/api/restaurants/${restaurantId}`);
+export const thunkGetListingInfo = (listingId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/listings/${listingId}`);
 
-//   if (res.ok) {
-//     const restaurant = await res.json();
-//     dispatch(getRestaurant(restaurant));
-//     return res;
-//   } else {
-//     const errors = await res.json();
-//     return errors;
-//   }
-// };
+  if (res.ok) {
+    const listing = await res.json();
+    dispatch(getListing(listing));
+    return res;
+  } else {
+    const errors = await res.json();
+    return errors;
+  }
+};
 
-// export const thunkCreateRestaurant = (restaurant, user) => async (dispatch) => {
-//   const res = await csrfFetch("/api/restaurants/", {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(restaurant),
-//   });
+export const thunkCreateListing = (listing, user) => async (dispatch) => {
+  const res = await csrfFetch("/api/listings/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(listing),
+  });
 
-//   if (res.ok) {
-//     const data = await res.json();
-//     return data;
-//   } else {
-//     const errors = await res.json();
-//     return errors;
-//   }
-// };
+  if (res.ok) {
+    const data = await res.json();
+    return data;
+  } else {
+    const errors = await res.json();
+    return errors;
+  }
+};
 
-// export const thunkGetUserRestaurants = () => async (dispatch) => {
-//   const res = await csrfFetch("/api/restaurants/current");
+export const thunkGetUserListings = () => async (dispatch) => {
+  const res = await csrfFetch("/api/listings/current");
 
-//   if (res.ok) {
-//     const restaurants = await res.json();
-//     dispatch(getRestaurants(restaurants));
-//     return res;
-//   } else {
-//     const errors = await res.json();
-//     return errors;
-//   }
-// };
+  if (res.ok) {
+    const listings = await res.json();
+    dispatch(getListings(listings));
+    return res;
+  } else {
+    const errors = await res.json();
+    return errors;
+  }
+};
 
-// export const thunkUpdateRestaurant =
-//   (restaurant, restaurantId) => async (dispatch) => {
-//     const res = await csrfFetch(`/api/restaurants/${restaurantId}`, {
-//       method: "PUT",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify(restaurant),
-//     });
+export const thunkUpdateListing =
+  (listing, listingId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/listings/${listingId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(listing),
+    });
 
-//     if (res.ok) {
-//       const data = await res.json();
-//       dispatch(updateRestaurant(data));
-//       return data;
-//     } else {
-//       const errors = await res.json();
-//       return errors;
-//     }
-//   };
+    if (res.ok) {
+      const data = await res.json();
+      dispatch(updateListing(data));
+      return data;
+    } else {
+      const errors = await res.json();
+      return errors;
+    }
+  };
 
-// export const thunkDeleteRestaurant = (restaurantId) => async (dispatch) => {
-//   const res = await csrfFetch(`/api/restaurants/${restaurantId}`, {
-//     method: "DELETE",
-//   });
+export const thunkDeleteListing = (listingId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/listings/${listingId}`, {
+    method: "DELETE",
+  });
 
-//   dispatch(deleteRestaurant(restaurantId));
-//   return res;
-// };
+  dispatch(deleteListing(listingId));
+  return res;
+};
 
 // REDUCERS
 const initialState = { allListings: {}, singleListing: {} };
@@ -143,40 +143,47 @@ const listingsReducer = (state = initialState, action) => {
       });
       return newState;
 
-    // case GET_RESTAURANT:
-    //   newState = { ...state, singleRestaurant: {} };
-    //   newState.singleRestaurant = action.restaurant;
-    //   return newState;
+    case GET_LISTING:
+      newState = { ...state, singleListing: {} };
+      newState.singleListing = action.listing;
+      return newState;
 
-    // case CREATE_RESTAURANT:
-    //   newState = {
-    //     ...state,
-    //     allRestaurants: { ...state.allRestaurants },
-    //     singleRestaurant: { ...action.restaurant },
-    //   };
-    //   newState.allRestaurants[action.restaurant.id] = action.restaurant;
-    //   return newState;
+    case CREATE_LISTING:
+      newState = {
+        ...state,
+        allListings: { ...state.allListings },
+        singleListing: { ...action.listing },
+      };
+      newState.allListings[action.listing.id] = action.listing;
+      return newState;
 
-    // case UPDATE_RESTAURANT:
-    //   newState = {
-    //     ...state,
-    //     allRestaurants: {},
-    //     singleRestaurant: { ...state.singleRestaurant },
-    //   };
-    //   newState.singleRestaurant = {
-    //     ...newState.singleRestaurant,
-    //     ...action.restaurant,
-    //   };
-    //   return newState;
+    case UPDATE_LISTING:
+      // newState = {
+      //   ...state,
+      //   allListings: {},
+      //   singleListing: { ...state.singleListing },
+      // };
+      // newState.singleListing = {
+      //   ...newState.singleListing,
+      //   ...action.listing,
+      // };
+      newState = {
+        ...state,
+        singleListing:{
+          ...state.singleListing,
+          [action.listing.id]:action.listing,
+        }
+      };
+      return newState;
 
-    // case DELETE_RESTAURANT:
-    //   newState = {
-    //     ...state,
-    //     allRestaurants: { ...state.allRestaurants },
-    //     singleRestaurant: {},
-    //   };
-    //   delete newState.allRestaurants[action.restaurantId];
-    //   return newState;
+    case DELETE_LISTING:
+      newState = {
+        ...state,
+        allListings: { ...state.allListings },
+        singleListing: {},
+      };
+      delete newState.allListings[action.listingId];
+      return newState;
 
     default:
       return state;
