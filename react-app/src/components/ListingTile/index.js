@@ -24,18 +24,24 @@ const ListingTile = ({ listing }) => {
   };
 
   return (
-    <div className="all-listings-container" key={id} onClick={handleClick}>
+    <div className="one-listings-container" key={id} onClick={handleClick}>
       <div className="listing-image">
         <img
           className="preview-image"
           src={image_url}
           alt={name}
           title={name}
-          style={{objectFit: "cover"}}
+          style={{ objectFit: "cover" }}
         ></img>
       </div>
       <div className="name-address-rating">
-      <p id="address-span">{name} ({address}) </p><span id="review-in-block">{avg_rating}</span>
+        <p id="review-in-block">{avg_rating} (we need to add the number of reviews)</p>
+        <div>
+        <p>{category}</p><span> {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}</span>
+        </div>
+        <p>Open until {close_hours} PM</p>
+        <p id="address-span">{name} </p>
+        <p>{address} </p>
       </div>
     </div>
   );
