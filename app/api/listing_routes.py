@@ -134,36 +134,39 @@ def create_listing():
         return { "errors": form.errors }, 400
 
 
-# @listing_routes.route("/<int:listingId>", methods=["PUT"])
-# @login_required
-# def update_listing(listingId):
-#     """
-#     Update a current listing
-#     """
-#     form = ListingForm()
+@listing_routes.route("/<int:listingId>", methods=["PUT"])
+@login_required
+def update_listing(listingId):
+    """
+    Update a current listing
+    """
+    form = ListingForm()
 
-#     form["csrf_token"].data = request.cookies["csrf_token"]
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
-#     listing_to_update = Listing.query.get(listingId)
-#     if listing_to_update.owner_id == current_user.id:
-#         if form.validate_on_submit():
-#             listing_to_update.address = form.data["address"]
-#             listing_to_update.city = form.data["city"]
-#             listing_to_update.state = form.data["state"]
-#             listing_to_update.name = form.data["name"]
-#             listing_to_update.type = form.data["type"]
-#             listing_to_update.price = form.data["price"]
-#             listing_to_update.open_hours = form.data["open_hours"]
-#             listing_to_update.close_hours = form.data["close_hours"]
-#             listing_to_update.image_url = form.data["image_url"]
-#             db.session.commit()
-#             return listing_to_update.to_dict()
+    listing_to_update = Listing.query.get(listingId)
+    print( "listing_to_update =======>>" , listing_to_update)
+    print( "current_user.id +++++++++>>" , current_user.id)
+    if listing_to_update.owner_id == current_user.id:
+        if form.validate_on_submit():
+            listing_to_update.address = form.data["address"]
+            listing_to_update.city = form.data["city"]
+            listing_to_update.state = form.data["state"]
+            listing_to_update.name = form.data["name"]
+            listing_to_update.category = form.data["category"]
+            listing_to_update.description = form.data["description"]
+            listing_to_update.price = form.data["price"]
+            listing_to_update.open_hours = form.data["open_hours"]
+            listing_to_update.close_hours = form.data["close_hours"]
+            listing_to_update.image_url = form.data["image_url"]
+            db.session.commit()
+            return listing_to_update.to_dict()
 
-#         else:
-#             return { "errors": form.errors }, 400
+        else:
+            return { "errors": form.errors }, 400
 
-#     else:
-#         return { "message": "FORBIDDEN" }, 403
+    else:
+        return { "message": "FORBIDDEN" }, 403
 
 
 # @listing_routes.route("/<int:listingId>", methods=["DELETE"])
