@@ -169,23 +169,23 @@ def update_listing(listingId):
         return { "message": "FORBIDDEN" }, 403
 
 
-# @listing_routes.route("/<int:listingId>", methods=["DELETE"])
-# @login_required
-# def delete(listingId):
-#     """
-#     Delete a listing
-#     """
-#     listing_to_delete = Listing.query.get(listingId)
+@listing_routes.route("/<int:listingId>", methods=["DELETE"])
+@login_required
+def delete(listingId):
+    """
+    Delete a listing
+    """
+    listing_to_delete = Listing.query.get(listingId)
 
-#     if listing_to_delete:
-#         if listing_to_delete.owner_id == current_user.id:
-#             db.session.delete(listing_to_delete)
-#             db.session.commit()
-#             return { "message": "Delete successful!" }
-#         else:
-#             return { "message": "FORBIDDEN" }, 403
-#     else:
-#         return { "message": "Listing not found!" }, 404
+    if listing_to_delete:
+        if listing_to_delete.owner_id == current_user.id:
+            db.session.delete(listing_to_delete)
+            db.session.commit()
+            return { "message": "Delete successful!" }
+        else:
+            return { "message": "FORBIDDEN" }, 403
+    else:
+        return { "message": "Listing not found!" }, 404
 
 
 # @listing_routes.route('/<int:listingId>/menuitems')

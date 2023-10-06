@@ -4,6 +4,11 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { NavLink, useHistory } from "react-router-dom";
+import './Navigation.css';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -39,14 +44,36 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button className="user-button-container" onClick={openMenu} >
+      <FontAwesomeIcon icon={faBars} />
       </button>
-      <ul className={ulClassName} ref={ulRef}>
+
+      <ul className={ulClassName} ref={ulRef} id="menu-drop-down">
         {user ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
+            <div id="user-name-container">
+              <li> Hello, {user.username}</li>
+              <li>{user.email}</li>
+            </div>
+            {user ? (
+
+              <span>
+                <NavLink className="create-new-listing menu-navLinks" to="/listings/new">
+                  Create a New Listing
+                </NavLink>
+              </span>
+            ) : (
+              ""
+            )}
+            <li>
+              <NavLink
+                exact
+                to="/listings/current"
+                className="manage-listings-current menu-navLinks"
+              >
+                Manage Listings
+              </NavLink>
+            </li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>
