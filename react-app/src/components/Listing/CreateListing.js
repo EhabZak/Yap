@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { thunkCreateListing} from "../../store/listings";
+import { thunkCreateListing } from "../../store/listings";
 import './CreateListing.css'
 
 export const CreateListing = ({ user }) => {
@@ -18,26 +18,27 @@ export const CreateListing = ({ user }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+  const [backendErrors, setBackendErrors] = useState({});
 
   const history = useHistory();
   const dispatch = useDispatch();
 
-console.log('user ==========>>>>>' , user) //! owner_id is not coming from this front end it is added in backend in listing_routes.py in create route.
+  // console.log('user ==========>>>>>' , user) //! owner_id is not coming from this front end it is added in backend in listing_routes.py in create route.
 
   useEffect(() => {
     const errors = {};
 
     if (!address) errors.address = "Address is required";
-    if (address.length > 49 || address.length < 2 ) errors.address = "address must be less than 50 characters";
+    if (address.length > 49 || address.length < 2) errors.address = "address must be less than 50 characters";
     if (!city) errors.city = "City is required";
     if (city.length > 29 || city.length < 2) errors.city = "City must be less than 30 characters";
     if (!state) errors.state = "State is required";
-    if (state.length > 29 || state.length < 2 ) errors.state = "State must be less than 30 characters";
+    if (state.length > 29 || state.length < 2) errors.state = "State must be less than 30 characters";
     if (!name || name.length < 2)
-    if (!name) errors.name = "Name is required";
+      if (!name) errors.name = "Name is required";
     if (name.length > 29) errors.name = "Name must be less than 30 characters";
     if (!category) errors.category = "category is required";
-    if (description.length < 30 || description.length > 250 ) errors.description = "Name must be more than 30 characters and less than 250";
+    if (description.length < 30 || description.length > 250) errors.description = "Description must be more than 30 characters and less than 250";
     if (!description) errors.description = "description is required";
     if (!price || price < 1) errors.price = "Price is required";
     if (!open_hours) errors.open_hours = "Open hours is required";
@@ -63,6 +64,7 @@ console.log('user ==========>>>>>' , user) //! owner_id is not coming from this 
     open_hours,
     close_hours,
     image_url,
+
   ]);
 
   const handleSubmit = async (e) => {
@@ -70,6 +72,7 @@ console.log('user ==========>>>>>' , user) //! owner_id is not coming from this 
     if (isSubmitting) return;
     setIsSubmitting(true);
     setSubmitted(true);
+    // setErrors({})
 
     const newListing = {
       address,
@@ -83,27 +86,49 @@ console.log('user ==========>>>>>' , user) //! owner_id is not coming from this 
       close_hours,
       image_url,
     };
-
+    // console.log("errors =======>>>>>>>>>>>", errors )
     if (!Object.values(errors).length) {
-      const addListing = await dispatch(
-        thunkCreateListing(newListing, user)
-      );
+      try {
+        const addListing = await dispatch(
+          thunkCreateListing(newListing, user)
+        );
+        if (addListing && !addListing.errors) {
 
-      const combinedErrors = { ...errors, Errors: addListing.errors }; //! very important step to add backend and front end errors
+          history.push(`/listings/${addListing.id}`);
+        }
+      } catch (error) {
 
-      if (addListing.errors) {
-        setErrors(combinedErrors);
-      } else {
-        history.push(`/listings/${addListing.id}`);
+        if (error.errors) {
+          // const combinedErrors = { ...errors, errors: error.errors };
+          // console.log("combinedErrors ==========>>>", combinedErrors)
+          console.log("addListing.errors ++++++++++++++>>>", error.errors)
+          setBackendErrors(error.errors);
+        }
+
       }
     }
+
+    // if (!Object.values(errors).length) {
+    //   const addListing = await dispatch(
+    //     thunkCreateListing(newListing, user)
+    //   );
+
+    //   const combinedErrors = { ...errors, Errors: addListing.errors }; //! very important step to add backend and front end errors
+    //   console.log("combinedErrors ==========>>>", combinedErrors)
+    //   console.log("addListing.errors ++++++++++++++>>>", addListing.errors)
+    //   if (addListing.errors) {
+    //     setErrors(combinedErrors);
+    //   } else {
+    //     history.push(`/listings/${addListing.id}`);
+    //   }
+    // }
     setIsSubmitting(false);
   };
 
   return (
     <div className="create-listing-form-container">
       <form onSubmit={handleSubmit} id='form-container'>
-      <h2>Create a New Listing</h2>
+        <h2>Create a New Listing</h2>
         <div className="location-container">
           <h3>Get Started</h3>
 
@@ -119,35 +144,44 @@ console.log('user ==========>>>>>' , user) //! owner_id is not coming from this 
               {errors.address && submitted && (
                 <p className="on-submit-errors">{errors.address}</p>
               )}
+              {backendErrors.address && submitted && (
+                <p className="backend-errors">{backendErrors.address}</p>
+              )}
             </div>
           </div>
 
           {/* <div className="form-div-container"> */}
-            <div className="city-container label-container" >
-              <label>City</label>
-              <input
-                type="text"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                placeholder="City"
-              />
-              {errors.city && submitted && (
-                <p className="on-submit-errors">{errors.city}</p>
+          <div className="city-container label-container" >
+            <label>City</label>
+            <input
+              type="text"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              placeholder="City"
+            />
+            {errors.city && submitted && (
+              <p className="on-submit-errors">{errors.city}</p>
+            )}
+            {backendErrors.city && submitted && (
+                <p className="backend-errors">{backendErrors.city}</p>
               )}
-            </div>
+          </div>
 
-            <div className="state-container label-container">
-              <label>State</label>
-              <input
-                type="text"
-                value={state}
-                onChange={(e) => setState(e.target.value)}
-                placeholder="State"
-              />
-              {errors.state && submitted && (
-                <p className="on-submit-errors">{errors.state}</p>
+          <div className="state-container label-container">
+            <label>State</label>
+            <input
+              type="text"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+              placeholder="State"
+            />
+            {errors.state && submitted && (
+              <p className="on-submit-errors">{errors.state}</p>
+            )}
+            {backendErrors.state && submitted && (
+                <p className="backend-errors">{backendErrors.state}</p>
               )}
-            </div>
+          </div>
           {/* </div> */}
         </div>
 
@@ -163,6 +197,9 @@ console.log('user ==========>>>>>' , user) //! owner_id is not coming from this 
             {errors.name && submitted && (
               <p className="on-submit-errors">{errors.name}</p>
             )}
+            {backendErrors.name && submitted && (
+                <p className="backend-errors">{backendErrors.name}</p>
+              )}
           </div>
         </div>
         <div className="form-div-container">
@@ -177,6 +214,9 @@ console.log('user ==========>>>>>' , user) //! owner_id is not coming from this 
             {errors.description && submitted && (
               <p className="on-submit-errors">{errors.description}</p>
             )}
+            {backendErrors.description && submitted && (
+                <p className="backend-errors">{backendErrors.description}</p>
+              )}
           </div>
         </div>
 
