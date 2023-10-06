@@ -38,232 +38,154 @@ def get_all_listings():
     return { "listings": all_listing_list}
 
 
-# @restaurant_routes.route('/<int:id>')
-# def get_restaurant_by_id(id):
-#     """
-#     Query for restaurant by restaurant.id
-#     """
+@listing_routes.route('/<int:id>')
+def get_listing_by_id(id):
+    """
+    Query for listing by listing.id
+    """
+    listing_to_get = Listing.query.get(id)
+    # one_listing = Listing.query.get(id).to_dict()
+    if listing_to_get is not None:
+        one_listing = listing_to_get.to_dict()
 
-#     one_restaurant = Restaurant.query.get(id).to_dict()
-#     reviews = Review.query.all()
-#     all_reviews = [review.to_dict() for review in reviews]
+        reviews = Review.query.all()
+        all_reviews = [review.to_dict() for review in reviews]
 
-#     restaurant_reviews = [ review for review in all_reviews if review["restaurant_id"] == one_restaurant["id"] ]
-#     sum_stars = 0
+        listing_reviews = [ review for review in all_reviews if review["listing_id"] == one_listing["id"] ]
+        sum_stars = 0
 
-#     for review in restaurant_reviews:
-#         sum_stars += review["stars"]
-#     if sum_stars > 0:
-#         avg_rating = sum_stars / len(restaurant_reviews)
-#         one_restaurant["avg_rating"] = avg_rating
-#         one_restaurant["num_reviews"] = len(restaurant_reviews)
+        for review in listing_reviews:
+            sum_stars += review["stars"]
+        if sum_stars > 0:
+            avg_rating = sum_stars / len(listing_reviews)
+            one_listing["avg_rating"] = avg_rating
+            one_listing["num_reviews"] = len(listing_reviews)
 
-#     if not one_restaurant:
-#         return { "message": "Restaurant not found!" }, 404
+    # if not one_listing:
+    #     return { "message": "Listing not found!" }, 404
 
-#     return one_restaurant
-
-
-# @restaurant_routes.route('/current')
-# @login_required
-# def get_owned_restaurants():
-#     """
-#     GET all owned restaurant route
-#     """
-
-#     all_restaurants = Restaurant.query.all()
-#     reviews = Review.query.all()
-#     owned_restaurants = [ restaurant.to_dict() for restaurant in all_restaurants if restaurant.owner_id == current_user.id ]
-
-#     all_review_list = [review.to_dict() for review in reviews]
-
-#     for restaurant_obj in owned_restaurants:
-#         restaurant_reviews = [ review for review in all_review_list if review["restaurant_id"] == restaurant_obj["id"] ]
-#         sum_stars = 0
-#         for restaurant_review in restaurant_reviews:
-#             sum_stars += restaurant_review["stars"]
-#         if sum_stars > 0:
-#             avg_rating = sum_stars / len(restaurant_reviews)
-#             restaurant_obj["avg_rating"] = avg_rating
-#             restaurant_obj["num_reviews"] = len(restaurant_reviews)
+        return one_listing
+    else:
+        return{"message": "Listing not found"}, 404
 
 
-#     return { "restaurants": owned_restaurants }
+
+@listing_routes.route('/current')
+@login_required
+def get_owned_listings():
+    """
+    GET all owned listing route
+    """
+
+    all_listings = Listing.query.all()
+    reviews = Review.query.all()
+    owned_listings = [ listing.to_dict() for listing in all_listings if listing.owner_id == current_user.id ]
+
+    all_review_list = [review.to_dict() for review in reviews]
+
+    for listing_obj in owned_listings:
+        listing_reviews = [ review for review in all_review_list if review["listing_id"] == listing_obj["id"] ]
+        sum_stars = 0
+        for listing_review in listing_reviews:
+            sum_stars += listing_review["stars"]
+        if sum_stars > 0:
+            avg_rating = sum_stars / len(listing_reviews)
+            listing_obj["avg_rating"] = avg_rating
+            listing_obj["num_reviews"] = len(listing_reviews)
 
 
-# @restaurant_routes.route('/', methods=["POST"])
-# @login_required
-# def create_restaurant():
-#     """
-#     Route to post a new restaurant
-#     """
-
-#     form = RestaurantForm()
-
-#     form["csrf_token"].data = request.cookies["csrf_token"]
-
-#     if form.validate_on_submit():
-
-#         new_restaurant = Restaurant(
-#             owner_id=current_user.id, #! this is where the owner id is coming from not from the front end
-#             address=form.data["address"],
-#             city=form.data["city"],
-#             state=form.data["state"],
-#             name=form.data["name"],
-#             type=form.data["type"],
-#             price=form.data["price"],
-#             open_hours=form.data["open_hours"],
-#             close_hours=form.data["close_hours"],
-#             image_url=form.data["image_url"],
-#             created_at = date.today(),
-#             updated_at = date.today()
-#         )
-#         db.session.add(new_restaurant)
-#         db.session.commit()
-#         return new_restaurant.to_dict(), 201
-
-#     else:
-#         print(form.errors)
-#         return { "errors": form.errors }, 400
+    return { "listings": owned_listings }
 
 
-# @restaurant_routes.route("/<int:restaurantId>", methods=["PUT"])
-# @login_required
-# def update_restaurant(restaurantId):
-#     """
-#     Update a current restaurant
-#     """
-#     form = RestaurantForm()
+@listing_routes.route('/', methods=["POST"])
+@login_required
+def create_listing():
+    """
+    Route to post a new listing
+    """
 
-#     form["csrf_token"].data = request.cookies["csrf_token"]
+    form = ListingForm()
 
-#     restaurant_to_update = Restaurant.query.get(restaurantId)
-#     if restaurant_to_update.owner_id == current_user.id:
-#         if form.validate_on_submit():
-#             restaurant_to_update.address = form.data["address"]
-#             restaurant_to_update.city = form.data["city"]
-#             restaurant_to_update.state = form.data["state"]
-#             restaurant_to_update.name = form.data["name"]
-#             restaurant_to_update.type = form.data["type"]
-#             restaurant_to_update.price = form.data["price"]
-#             restaurant_to_update.open_hours = form.data["open_hours"]
-#             restaurant_to_update.close_hours = form.data["close_hours"]
-#             restaurant_to_update.image_url = form.data["image_url"]
-#             db.session.commit()
-#             return restaurant_to_update.to_dict()
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
-#         else:
-#             return { "errors": form.errors }, 400
+    if form.validate_on_submit():
 
-#     else:
-#         return { "message": "FORBIDDEN" }, 403
+        new_listing = Listing(
+            owner_id=current_user.id, #! this is where the owner id is coming from not from the front end
+            address=form.data["address"],
+            city=form.data["city"],
+            state=form.data["state"],
+            name=form.data["name"],
+            category=form.data["category"],
+            description= form.data["description"],
+            price=form.data["price"],
+            open_hours=form.data["open_hours"],
+            close_hours=form.data["close_hours"],
+            image_url=form.data["image_url"],
+            created_at = date.today(),
+            updated_at = date.today()
+        )
+        db.session.add(new_listing)
+        db.session.commit()
+        return new_listing.to_dict(), 201
 
-
-# @restaurant_routes.route("/<int:restaurantId>", methods=["DELETE"])
-# @login_required
-# def delete(restaurantId):
-#     """
-#     Delete a restaurant
-#     """
-#     restaurant_to_delete = Restaurant.query.get(restaurantId)
-
-#     if restaurant_to_delete:
-#         if restaurant_to_delete.owner_id == current_user.id:
-#             db.session.delete(restaurant_to_delete)
-#             db.session.commit()
-#             return { "message": "Delete successful!" }
-#         else:
-#             return { "message": "FORBIDDEN" }, 403
-#     else:
-#         return { "message": "Restaurant not found!" }, 404
+    else:
+        print(form.errors)
+        return { "errors": form.errors }, 400
 
 
-# @restaurant_routes.route('/<int:restaurantId>/menuitems')
-# #/api/restaurants/:restaurantId/menuitems
-# def get_restaurant_menu_items(restaurantId):
-#     """
-#     Query for all menu items for a specific restaurant
-#     """
+@listing_routes.route("/<int:listingId>", methods=["PUT"])
+@login_required
+def update_listing(listingId):
+    """
+    Update a current listing
+    """
+    form = ListingForm()
 
-#     all_menu_items = MenuItem.query.all()
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
-#     restaurant_menu_items = [menu_item.to_dict() for menu_item in all_menu_items if menu_item.restaurantId == restaurantId]
+    listing_to_update = Listing.query.get(listingId)
+    print( "listing_to_update =======>>" , listing_to_update)
+    print( "current_user.id +++++++++>>" , current_user.id)
+    if listing_to_update.owner_id == current_user.id:
+        if form.validate_on_submit():
+            listing_to_update.address = form.data["address"]
+            listing_to_update.city = form.data["city"]
+            listing_to_update.state = form.data["state"]
+            listing_to_update.name = form.data["name"]
+            listing_to_update.category = form.data["category"]
+            listing_to_update.description = form.data["description"]
+            listing_to_update.price = form.data["price"]
+            listing_to_update.open_hours = form.data["open_hours"]
+            listing_to_update.close_hours = form.data["close_hours"]
+            listing_to_update.image_url = form.data["image_url"]
+            db.session.commit()
+            return listing_to_update.to_dict()
 
-#     return restaurant_menu_items
+        else:
+            return { "errors": form.errors }, 400
 
-
-# @restaurant_routes.route('/<int:restaurantId>/createmenuitem', methods=["POST"])
-# #/api/restaurants/:restaurantId/createmenuitem
-# @login_required
-# def create_menu_item(restaurantId):
-#     """
-#     Route to post a new menu item
-#     """
-
-#     form = MenuItemForm()
-
-#     form["csrf_token"].data = request.cookies["csrf_token"]
-
-#     if form.validate_on_submit():
-
-#         new_menu_item = MenuItem(
-#             restaurantId=restaurantId,
-#             name=form.data["name"],
-#             size=form.data["size"],
-#             calories=form.data["calories"],
-#             price=form.data["price"],
-#             description=form.data["description"],
-#             imageUrl=form.data["image_url"],
-#             created_at = date.today(),
-#             updated_at = date.today()
-#         )
-#         db.session.add(new_menu_item)
-#         db.session.commit()
-#         return new_menu_item.to_dict(), 201
-
-#     else:
-#         print(form.errors)
-#         return { "errors": form.errors }, 400
+    else:
+        return { "message": "FORBIDDEN" }, 403
 
 
-# @restaurant_routes.route('/<int:restaurantId>/reviews')
-# def get_restaurant_reviews(restaurantId):
-#     """
-#     Query for all reviews for a specific restaurant
-#     """
+@listing_routes.route("/<int:listingId>", methods=["DELETE"])
+@login_required
+def delete(listingId):
+    """
+    Delete a listing
+    """
+    listing_to_delete = Listing.query.get(listingId)
 
-#     all_reviews = Review.query.all()
+    if listing_to_delete:
+        if listing_to_delete.owner_id == current_user.id:
+            db.session.delete(listing_to_delete)
+            db.session.commit()
+            return { "message": "Delete successful!" }
+        else:
+            return { "message": "FORBIDDEN" }, 403
+    else:
+        return { "message": "Listing not found!" }, 404
 
-#     restaurant_reviews = [review.to_dict() for review in all_reviews if review.restaurant_id == restaurantId]
-
-#     return restaurant_reviews
 
 
-# @restaurant_routes.route('/<int:restaurantId>/createreview', methods=["POST"])
-# @login_required
-# def create_review(restaurantId):
-#     """
-#     Route to post a new review
-#     """
-
-#     form = ReviewForm()
-
-#     form["csrf_token"].data = request.cookies["csrf_token"]
-
-#     if form.validate_on_submit():
-
-#         new_review = Review(
-#             restaurant_id=restaurantId,
-#             user_id=current_user.id,
-#             review=form.data["review"],
-#             stars=form.data["stars"],
-#             created_at = date.today(),
-#             updated_at = date.today()
-#         )
-#         db.session.add(new_review)
-#         db.session.commit()
-#         return new_review.to_dict(), 201
-
-#     else:
-#         print(form.errors)
-#         return { "errors": form.errors }, 400

@@ -1,0 +1,16 @@
+.manage-listings-update-button, .manage-listings-create-btn, .delete-button {
+    font-family: 'Wix Madefor Display', sans-serif;
+    font-weight: 500;
+    background-color: red;
+    color: white;
+    font-size: 11px;
+    padding: 4px 6px;
+    border: none;
+    border-radius: 7px;
+  }
+
+  #delete-button button{
+
+    background-color: red ;
+    color: blue;
+  }
