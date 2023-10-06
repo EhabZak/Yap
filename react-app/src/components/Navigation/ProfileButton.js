@@ -8,7 +8,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import './Navigation.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -43,9 +43,9 @@ function ProfileButton({ user }) {
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <>
+    <div id="main-menu-container">
       <button className="user-button-container" onClick={openMenu} >
-      <FontAwesomeIcon icon={faBars} />
+      <FontAwesomeIcon icon={faCircleUser} />
       </button>
 
       <ul className={ulClassName} ref={ulRef} id="menu-drop-down">
@@ -94,7 +94,7 @@ function ProfileButton({ user }) {
           </>
         )}
       </ul>
-    </>
+    </div>
   );
 }
 

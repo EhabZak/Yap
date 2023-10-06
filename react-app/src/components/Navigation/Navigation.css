@@ -10,12 +10,15 @@ html, body {
   margin: 0;
   padding: 0;
 }
-
+#main-menu-container{
+  display: flex;
+  justify-content: end;
+}
 #header{
   display: flex;
   /* border-bottom: solid 2px lightgrey; */
   list-style-type: none;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   align-items: center;
   margin-top: 0px;
   padding-left: 20px ;
@@ -40,11 +43,14 @@ html, body {
   z-index: 1;
   height: 100%;
   width: 200px;
-  margin-left: 0px;
+  /* margin-left: 0px; */
+  padding-right: 40px;
   /* display: grid; */
   list-style-type: none;
   border: black 2px solid;
   border-radius: 7px;
+  /* position: relative; */
+  margin-top: 40px;
 }
 #menu-drop-down li{
   padding-top: 20px;
@@ -104,5 +110,8 @@ margin-top: 40px;
   height: 40px;
 }
 .user-button-container{
-  background-color: green;
+  background-color: white;
+  border: none;
+  font-size: 37px;
+  color: lightgrey;
 }

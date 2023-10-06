@@ -97,21 +97,21 @@ export const thunkCreateListing = (listing, user) => async (dispatch) => {
 
 
 
-  // const res = await csrfFetch("/api/listings/", {
-  //   method: "POST",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify(listing),
-  // });
+  const res = await csrfFetch("/api/listings/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(listing),
+  });
 
-  // if (res.ok) {
-  //   const data = await res.json();
-  //   console.log("data ======*******" , data)
-  //   return data;
-  // } else {
-  //   const errors = await res.json();
-  //   console.log("errors ======*******" , errors)
-  //   return errors;
-  // }
+  if (res.ok) {
+    const data = await res.json();
+    console.log("data ======*******" , data)
+    return data;
+  } else {
+    const errors = await res.json();
+    console.log("errors ======*******" , errors)
+    return errors;
+  }
 };
 
 export const thunkGetUserListings = () => async (dispatch) => {
