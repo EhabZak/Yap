@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import { Listings } from "./components/Listing";
 import { ListingDetails } from "./components/ListingDetails";
 import { CreateListing } from "./components/Listing/CreateListing";
+import { GetListingToUpdate } from "./components/Listing/GetListingToUpdate";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route exact path="/listings/new">
             <CreateListing/>
+          </Route>
+          <Route exact path="/listings/:listingId/edit">
+            <GetListingToUpdate/>
           </Route>
           <Route exact path="/listings/:listingId">
             <ListingDetails />
