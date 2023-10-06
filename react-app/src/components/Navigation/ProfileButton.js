@@ -8,7 +8,11 @@ import { NavLink, useHistory } from "react-router-dom";
 import './Navigation.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { faCircleUser as soldCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faGear } from '@fortawesome/free-solid-svg-icons';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -45,37 +49,44 @@ function ProfileButton({ user }) {
   return (
     <div id="main-menu-container">
       <button className="user-button-container" onClick={openMenu} >
-      <FontAwesomeIcon icon={faCircleUser} />
+      <FontAwesomeIcon icon={soldCircleUser} />
       </button>
 
       <ul className={ulClassName} ref={ulRef} id="menu-drop-down">
         {user ? (
           <>
-            <div id="user-name-container">
+            <div id="auser-name-container">
+              <div id="hello-container">
+              <div className="menu-logo"><FontAwesomeIcon icon={ faUser} /></div>
               <li> Hello, {user.username}</li>
-              <li>{user.email}</li>
+
+              </div>
+              {/* <li>{user.email}</li> */}
             </div>
             {user ? (
 
-              <span>
-                <NavLink className="create-new-listing menu-navLinks" to="/listings/new">
+              <div id="create-container">
+               <div className="menu-logo"> <FontAwesomeIcon icon={faPlus} /></div>
+               <div> <NavLink className="create-new-listing menu-navLinks" to="/listings/new">
                   Create a New Listing
-                </NavLink>
-              </span>
+                </NavLink> </div>
+              </div>
             ) : (
               ""
             )}
-            <li>
-              <NavLink
+            <div id="create-container">
+            <div className="menu-logo">< FontAwesomeIcon icon={faGear}/></div>
+              <div><NavLink
                 exact
                 to="/listings/current"
                 className="manage-listings-current menu-navLinks"
               >
                 Manage Listings
-              </NavLink>
-            </li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
+              </NavLink></div>
+            </div>
+            <li id="logout-container">
+            <div className="menu-logo"><FontAwesomeIcon icon={faArrowRightFromBracket} /></div>
+              <button id="log-out-button" onClick={handleLogout}>Log Out</button>
             </li>
           </>
         ) : (
