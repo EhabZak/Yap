@@ -128,18 +128,18 @@ export const CreateListing = ({ user }) => {
   return (
     <div className="create-listing-form-container">
       <form onSubmit={handleSubmit} id='form-container'>
-        <h2>Create a New Listing</h2>
+        <h2>Add a New Business</h2>
         <div className="location-container">
           <h3>Get Started</h3>
 
           <div className="form-div-container">
-            <div className="address-container label-container">
+            <div className="address-container input-container">
               <label>Store Address</label>
               <input
                 type="text"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                placeholder="Store Address"
+                // placeholder="Store Address"
               />
               {errors.address && submitted && (
                 <p className="on-submit-errors">{errors.address}</p>
@@ -325,7 +325,7 @@ export const CreateListing = ({ user }) => {
         </div>
 
         <div className="images-container">
-          <h3>Liven up your listing with photos</h3>
+          <h3>Liven up your business with photos</h3>
           <p>Submit a link to at least one photo to publish your listing.</p>
           <div className="image-url-container label-container">
             <input
@@ -359,7 +359,7 @@ export const CreateListing = ({ user }) => {
               )
             }
           >
-            Create Listing
+            Create Business
           </button>
         </div>
       </form>

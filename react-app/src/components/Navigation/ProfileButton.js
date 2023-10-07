@@ -68,7 +68,7 @@ function ProfileButton({ user }) {
               <div id="create-container">
                <div className="menu-logo"> <FontAwesomeIcon icon={faPlus} /></div>
                <div> <NavLink className="create-new-listing menu-navLinks" to="/listings/new">
-                  Create a New Listing
+                  Add a Business
                 </NavLink> </div>
               </div>
             ) : (
@@ -81,7 +81,7 @@ function ProfileButton({ user }) {
                 to="/listings/current"
                 className="manage-listings-current menu-navLinks"
               >
-                Manage Listings
+                Manage Business
               </NavLink></div>
             </div>
             <li id="logout-container">
