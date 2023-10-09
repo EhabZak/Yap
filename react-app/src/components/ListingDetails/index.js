@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { thunkGetListingInfo } from "../../store/listings";
-// import { thunkGetListingReviews } from "../../store/reviews";
+import { thunkGetListingReviews } from "../../store/reviews";
 
-// import { ListingReviews } from "../ReviewsById";
+import {ListingReviews } from "../ReviewsById";
 import { useHistory } from "react-router";
 //// import { setUser, thunkGetUserInfo } from "../../store/session";
 import "./ListingDetails.css";
@@ -17,9 +17,9 @@ export const ListingDetails = () => {
   const { listingId } = useParams();
 
   const currentUser = useSelector((state) => state.session.user);
-//   const reviews = useSelector((state) => state.reviews.allReviews)
+  const reviews = useSelector((state) => state.reviews.allReviews)
 
-//   const reviewsList = Object.values(reviews)
+  const reviewsList = Object.values(reviews)
 
 //   console.log("ListingDetails reviewsList: ", reviewsList)
 //!  one listing
@@ -34,9 +34,9 @@ export const ListingDetails = () => {
 
   useEffect(() => {
     dispatch(thunkGetListingInfo(listingId));
-    // dispatch(thunkGetListingReviews(listingId));
+    dispatch(thunkGetListingReviews(listingId));
     // add to the dependancy array reviewsList.length
-  }, [dispatch, listingId, ]);
+  }, [dispatch, listingId, reviewsList.length]);
 
 //   const handleClick = () => {
 //     // tbd
@@ -78,7 +78,7 @@ export const ListingDetails = () => {
             </p>
             <p className="listing-subheader">
               <i className="fa-solid fa-star"></i>
-              {/* {oneListing.avg_rating} ({oneListing.num_reviews}{" "} ratings ) */}
+              {oneListing.avg_rating} ({oneListing.num_reviews}{" "} ratings )
               · {oneListing.type} ·{" "}
               {oneListing.price === 3 ? "$$$" : oneListing.price === 2 ? "$$" : "$"}
             </p>
@@ -111,10 +111,10 @@ export const ListingDetails = () => {
         <div className="listing-details-reviews">
           <div className="listing-reviews-headers">
             <h1>Reviews</h1>
-            <p>Hear from people who love this spot</p>
+            <h2>Recommended Reviews</h2>
           </div>
           <div className="listing-reviews-component">
-            {/* <ListingReviews listingId={listingId} /> */}
+            <ListingReviews listingId={listingId} />
           </div>
         </div>
       </div>

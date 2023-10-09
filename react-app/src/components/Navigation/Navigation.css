@@ -42,7 +42,7 @@ html, body {
 #menu-drop-down{
   background-color: white;
   z-index: 1;
-  height: 250px;
+  height: 290px;
   width: 170px;
   min-height: 150px;
   /* margin-left: 0px; */
@@ -95,7 +95,7 @@ text-decoration: none;
   text-decoration: none;
 }
 
-.create-new-restaurant{
+.create-new-listing{
 margin-top: 40px;
 
 }
@@ -134,7 +134,7 @@ margin-top: 40px;
 }
 
 
-#create-container {
+.create-container {
 display: flex;
 flex-direction: row;
 
@@ -147,12 +147,12 @@ flex-direction: row;
     gap: 10px;
 }
 
-#create-container .menu-navLinks {
+.create-container .menu-navLinks {
   color: #000;
   /* background-color: red; */
 }
 
-#create-container:hover {
+.create-container:hover {
 
   border-color: rgba(235,235,235,1);
   background-color: rgba(235,235,235,1);

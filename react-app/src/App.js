@@ -10,6 +10,7 @@ import { ListingDetails } from "./components/ListingDetails";
 import { CreateListing } from "./components/Listing/CreateListing";
 import { GetListingToUpdate } from "./components/Listing/GetListingToUpdate";
 import { ManageListings } from "./components/ManageListings";
+import { ManageReviews } from "./components/ManageReviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,9 @@ function App() {
           </Route>
           <Route exact path="/listings/current">
             <ManageListings />
+          </Route>
+          <Route exact path="/reviews/current">
+            <ManageReviews />
           </Route>
           <Route exact path="/listings/:listingId/edit">
             <GetListingToUpdate/>
