@@ -49,7 +49,7 @@ function ProfileButton({ user }) {
   return (
     <div id="main-menu-container">
       <button className="user-button-container" onClick={openMenu} >
-      <FontAwesomeIcon icon={soldCircleUser} />
+        <FontAwesomeIcon icon={soldCircleUser} />
       </button>
 
       <ul className={ulClassName} ref={ulRef} id="menu-drop-down">
@@ -57,8 +57,8 @@ function ProfileButton({ user }) {
           <>
             <div id="auser-name-container">
               <div id="hello-container">
-              <div className="menu-logo"><FontAwesomeIcon icon={ faUser} /></div>
-              <li> Hello, {user.username}</li>
+                <div className="menu-logo"><FontAwesomeIcon icon={faUser} /></div>
+                <li> Hello, {user.username}</li>
 
               </div>
               {/* <li>{user.email}</li> */}
@@ -66,8 +66,8 @@ function ProfileButton({ user }) {
             {user ? (
 
               <div className="create-container">
-               <div className="menu-logo"> <FontAwesomeIcon icon={faPlus} /></div>
-               <div> <NavLink className="create-new-listing menu-navLinks" to="/listings/new">
+                <div className="menu-logo"> <FontAwesomeIcon icon={faPlus} /></div>
+                <div> <NavLink className="create-new-listing menu-navLinks" to="/listings/new">
                   Add a Business
                 </NavLink> </div>
               </div>
@@ -75,7 +75,7 @@ function ProfileButton({ user }) {
               ""
             )}
             <div className="create-container">
-            <div className="menu-logo">< FontAwesomeIcon icon={faGear}/></div>
+              <div className="menu-logo">< FontAwesomeIcon icon={faGear} /></div>
               <div><NavLink
                 exact
                 to="/listings/current"
@@ -86,7 +86,7 @@ function ProfileButton({ user }) {
             </div>
 
             <div className="create-container">
-            <div className="menu-logo">< FontAwesomeIcon icon={faGear}/></div>
+              <div className="menu-logo">< FontAwesomeIcon icon={faGear} /></div>
               <NavLink
                 exact
                 to="/reviews/current"
@@ -96,7 +96,7 @@ function ProfileButton({ user }) {
               </NavLink>
             </div>
             <li id="logout-container">
-            <div className="menu-logo"><FontAwesomeIcon icon={faArrowRightFromBracket} /></div>
+              <div className="menu-logo"><FontAwesomeIcon icon={faArrowRightFromBracket} /></div>
               <button id="log-out-button" onClick={handleLogout}>Log Out</button>
             </li>
 
@@ -104,19 +104,25 @@ function ProfileButton({ user }) {
           </>
 
         ) : (
-          <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
+          <ul id="main-sign-up-container">
+            <i className="sign-up-container">
+              <span className="fa-solid fa-arrow-right-to-bracket"></span>
+              <OpenModalButton
+                buttonText="Log In"
+                onItemClick={closeMenu}
+                modalComponent={<LoginFormModal />}
+              />
+            </i>
 
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </>
+            <i className="sign-up-container">
+              <i className="fa-solid fa-user-plus"></i>
+              <OpenModalButton 
+                buttonText="Sign Up"
+                onItemClick={closeMenu}
+                modalComponent={<SignupFormModal />}
+              />
+            </i>
+          </ul>
         )}
       </ul>
     </div>
