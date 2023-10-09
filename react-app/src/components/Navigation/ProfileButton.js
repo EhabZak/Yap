@@ -65,30 +65,44 @@ function ProfileButton({ user }) {
             </div>
             {user ? (
 
-              <div id="create-container">
+              <div className="create-container">
                <div className="menu-logo"> <FontAwesomeIcon icon={faPlus} /></div>
                <div> <NavLink className="create-new-listing menu-navLinks" to="/listings/new">
-                  Create a New Listing
+                  Add a Business
                 </NavLink> </div>
               </div>
             ) : (
               ""
             )}
-            <div id="create-container">
+            <div className="create-container">
             <div className="menu-logo">< FontAwesomeIcon icon={faGear}/></div>
               <div><NavLink
                 exact
                 to="/listings/current"
                 className="manage-listings-current menu-navLinks"
               >
-                Manage Listings
+                Manage Business
               </NavLink></div>
+            </div>
+
+            <div className="create-container">
+            <div className="menu-logo">< FontAwesomeIcon icon={faGear}/></div>
+              <NavLink
+                exact
+                to="/reviews/current"
+                className="manage-reviews-current menu-navLinks"
+              >
+                Manage Reviews
+              </NavLink>
             </div>
             <li id="logout-container">
             <div className="menu-logo"><FontAwesomeIcon icon={faArrowRightFromBracket} /></div>
               <button id="log-out-button" onClick={handleLogout}>Log Out</button>
             </li>
+
+
           </>
+
         ) : (
           <>
             <OpenModalButton

@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request, redirect
 from app.models import db, Listing, User, Review
 from ..forms.listing_form import ListingForm
 
-# from ..forms.review_form import ReviewForm
+from ..forms.review_form import ReviewForm
 from datetime import date
 
 from flask_login import current_user, login_required
@@ -189,3 +189,44 @@ def delete(listingId):
 
 
 
+@listing_routes.route('/<int:listingId>/reviews')
+def get_listing_reviews(listingId):
+    """
+    Query for all reviews for a specific listing
+    """
+
+    all_reviews = Review.query.all()
+
+    listing_reviews = [review.to_dict() for review in all_reviews if review.listing_id == listingId]
+
+    return listing_reviews
+
+
+@listing_routes.route('/<int:listingId>/createreview', methods=["POST"])
+@login_required
+def create_review(listingId):
+    """
+    Route to post a new review
+    """
+
+    form = ReviewForm()
+
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+
+        new_review = Review(
+            listing_id=listingId,
+            user_id=current_user.id,
+            review=form.data["review"],
+            stars=form.data["stars"],
+            created_at = date.today(),
+            updated_at = date.today()
+        )
+        db.session.add(new_review)
+        db.session.commit()
+        return new_review.to_dict(), 201
+
+    else:
+        print(form.errors)
+        return { "errors": form.errors }, 400

@@ -128,18 +128,18 @@ export const CreateListing = ({ user }) => {
   return (
     <div className="create-listing-form-container">
       <form onSubmit={handleSubmit} id='form-container'>
-        <h2>Create a New Listing</h2>
+        <h2>Add a New Business</h2>
         <div className="location-container">
           <h3>Get Started</h3>
 
           <div className="form-div-container">
-            <div className="address-container label-container">
+            <div className="address-container input-container">
               <label>Store Address</label>
               <input
                 type="text"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                placeholder="Store Address"
+                // placeholder="Store Address"
               />
               {errors.address && submitted && (
                 <p className="on-submit-errors">{errors.address}</p>
@@ -151,13 +151,13 @@ export const CreateListing = ({ user }) => {
           </div>
 
           {/* <div className="form-div-container"> */}
-          <div className="city-container label-container" >
+          <div className="city-container input-container" >
             <label>City</label>
             <input
               type="text"
               value={city}
               onChange={(e) => setCity(e.target.value)}
-              placeholder="City"
+              // placeholder="City"
             />
             {errors.city && submitted && (
               <p className="on-submit-errors">{errors.city}</p>
@@ -167,13 +167,13 @@ export const CreateListing = ({ user }) => {
               )}
           </div>
 
-          <div className="state-container label-container">
+          <div className="state-container input-container">
             <label>State</label>
             <input
               type="text"
               value={state}
               onChange={(e) => setState(e.target.value)}
-              placeholder="State"
+              // placeholder="State"
             />
             {errors.state && submitted && (
               <p className="on-submit-errors">{errors.state}</p>
@@ -186,13 +186,13 @@ export const CreateListing = ({ user }) => {
         </div>
 
         <div className="form-div-container">
-          <div className="name-container label-container">
+          <div className="name-container input-container">
             <label>Listing Name</label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Listing Name"
+              // placeholder="Listing Name"
             />
             {errors.name && submitted && (
               <p className="on-submit-errors">{errors.name}</p>
@@ -203,13 +203,13 @@ export const CreateListing = ({ user }) => {
           </div>
         </div>
         <div className="form-div-container">
-          <div className="description-container label-container">
+          <div className="description-container input-container">
             <label>Listing Description</label>
             <textarea
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Listing Description"
+              // placeholder="Listing Description"
             />
             {errors.description && submitted && (
               <p className="on-submit-errors">{errors.description}</p>
@@ -324,8 +324,8 @@ export const CreateListing = ({ user }) => {
           </div>
         </div>
 
-        <div className="images-container">
-          <h3>Liven up your listing with photos</h3>
+        <div className="images-container ">
+          <h3>Liven up your business with photos</h3>
           <p>Submit a link to at least one photo to publish your listing.</p>
           <div className="image-url-container label-container">
             <input
@@ -359,7 +359,7 @@ export const CreateListing = ({ user }) => {
               )
             }
           >
-            Create Listing
+            Create Business
           </button>
         </div>
       </form>

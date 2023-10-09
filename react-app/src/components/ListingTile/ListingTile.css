@@ -1,0 +1,12 @@
+
+
+.star_icon-1{
+    width: 1em;
+    height: 1em;
+    /* background-color: red; */
+    color: blue;
+    /* fill: blue; */
+}
+#review-rating-star{
+    color: gold;
+}

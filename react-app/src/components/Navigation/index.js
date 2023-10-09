@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import logo from '../../assets/yap-logo.png'
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
@@ -10,7 +11,9 @@ function Navigation({ isLoaded }){
 	return (
 		<ul id ="header">
 			<li>
-				<NavLink exact to="/">Home</NavLink>
+				<NavLink exact to="/">
+				<img id="logo-image" src= {logo}alt="Logo"/>
+				</NavLink>
 			</li>
 			{isLoaded && (
 				<li>
