@@ -42,8 +42,9 @@ html, body {
 #menu-drop-down{
   background-color: white;
   z-index: 1;
-  height: 50%;
+  height: 250px;
   width: 170px;
+  min-height: 150px;
   /* margin-left: 0px; */
   padding-right: 40px;
   /* display: grid; */
