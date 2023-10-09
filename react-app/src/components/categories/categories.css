@@ -1,0 +1,34 @@
+#categories-bar-container{
+    /* background-color: lightblue; */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+   height: 444px;
+   width: 1184px;
+
+}
+
+#categories-bar-container img{
+height: 50px;
+width: 50px;
+
+
+}
+#categories-bar-container li{
+list-style: none;
+/* height: 100%;
+width: 100%; */
+display: flex;
+justify-content: center;
+align-items: center;
+width: 256px;
+height: 183px;
+}
+
+.image-container{
+    box-shadow: 0 0 10px 0 #00000026;
+}
+
+
+.image-container:hover{
+    box-shadow: 0 0 10px 0 #00000026;
+}

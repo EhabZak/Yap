@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetListings } from "../../store/listings";
 import ListingTile from "../ListingTile";
 import "./all-listings.css";
-
+import categories from "../categories";
 
 export const Listings = () => {
   const dispatch = useDispatch();
@@ -26,6 +26,7 @@ export const Listings = () => {
 
   return (
     <>
+    {categories}
 
       {/* <hr id="cat-hr"></hr>
       <div id="middle-header-container">
