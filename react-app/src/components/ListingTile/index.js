@@ -1,6 +1,9 @@
 import { useHistory } from "react-router";
 import "./ListingTile.css";
 
+//!
+import StarIcon from "../StarIcon";
+
 const ListingTile = ({ listing }) => {
   const {
     id,
@@ -35,9 +38,14 @@ const ListingTile = ({ listing }) => {
         ></img>
       </div>
       <div className="name-address-rating">
-        <p id="review-in-block">{avg_rating} (we need to add the number of reviews)</p>
+        
+        <i className="fa-solid fa-star" id='review-rating-star'></i>
+        <i class="fa-solid fa-square-star"></i>
+
+
+        <p id="review-in-block">{avg_rating} (I need to add the number of reviews)</p>
         <div>
-        <p>{category}</p><span> {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}</span>
+          <p>{category}</p><span> {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}</span>
         </div>
         <p>Open until {close_hours} PM</p>
         <p id="address-span">{name} </p>
