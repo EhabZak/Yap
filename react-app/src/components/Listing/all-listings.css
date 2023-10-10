@@ -18,13 +18,14 @@ a,button {
     display:flex;
     flex-wrap: wrap;
     gap: 20px;
-
+    font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
      padding: 0px;
+     /* font-size: 12px; */
 
 }
 
 .one-listings-container{
-  
+
     font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
     display: flex;

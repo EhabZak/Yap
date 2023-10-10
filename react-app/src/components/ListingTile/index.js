@@ -39,18 +39,20 @@ const ListingTile = ({ listing }) => {
         ></img>
       </div>
       <div className="name-address-rating">
+        <h3 id="address-span">{name} </h3>
 
+
+
+
+
+        <p id="review-in-block">
         <i className="fa-solid fa-star" id='review-rating-star'></i>
-        <i className="fa-solid fa-square-star"></i>
-
-
-        <p id="review-in-block">{avg_rating} ({num_reviews} reviews)</p>
-        <div>
-          <p>{category}</p><span> {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}</span>
+          {avg_rating} ({num_reviews} reviews)</p>
+        <div className="category-style">
+          <p>{category} </p> <div> {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}</div>
         </div>
         <p>Open until {close_hours} PM</p>
-        <p id="address-span">{name} </p>
-        <p>{address} </p>
+        {/* <p>{address} </p> */}
       </div>
     </div>
   );
