@@ -11,6 +11,7 @@ import { CreateListing } from "./components/Listing/CreateListing";
 import { GetListingToUpdate } from "./components/Listing/GetListingToUpdate";
 import { ManageListings } from "./components/ManageListings";
 import { ManageReviews } from "./components/ManageReviews";
+import { RestaurantsListings } from "./components/categories/Restaurants";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +48,9 @@ function App() {
           </Route>
           <Route exact path="/listings/:listingId">
             <ListingDetails />
+          </Route>
+          <Route exact path="/restaurants">
+            <RestaurantsListings />
           </Route>
 
         </Switch>

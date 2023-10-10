@@ -6,6 +6,7 @@ import spa from "../../assets/spa.png"
 import automotive from "../../assets/auto.png"
 import home from "../../assets/home.png"
 import './categories.css'
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min"
 
 const showAlert = () => {
     window.alert("Coming Soon");
@@ -13,12 +14,14 @@ const showAlert = () => {
 let categories = (
     <div id="outer-category-container" >
         <ul id="categories-bar-container">
-            <li onClick={showAlert} >
+            <NavLink exact to="/restaurants">
+            <li >
                 <div className="image-container" >
                     <img src={restaurants} alt="restaurants" ></img>
                 </div>
-                {/* <p>Deals</p> */}
+
             </li>
+            </NavLink>
             <li onClick={showAlert}>
                 <div className="image-container">
                     <img src={shopping} alt="shopping" ></img>

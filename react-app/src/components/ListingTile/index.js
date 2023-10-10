@@ -38,9 +38,9 @@ const ListingTile = ({ listing }) => {
         ></img>
       </div>
       <div className="name-address-rating">
-        
+
         <i className="fa-solid fa-star" id='review-rating-star'></i>
-        <i class="fa-solid fa-square-star"></i>
+        <i className="fa-solid fa-square-star"></i>
 
 
         <p id="review-in-block">{avg_rating} (I need to add the number of reviews)</p>
