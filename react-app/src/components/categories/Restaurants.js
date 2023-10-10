@@ -16,7 +16,7 @@ export const RestaurantsListings = () => {
   const allListings = Object.values(getListings);
 
   const listings = allListings.filter((listing)=> listing.category === "restaurant")
-  console.log( "listings ============>>>>>>>>",   listings)
+//   console.log( "listings ============>>>>>>>>",   listings)
 
   useEffect(() => {
     dispatch(thunkGetListings());
@@ -31,7 +31,7 @@ export const RestaurantsListings = () => {
 
 
 
-        <h2>Best Restaurants near You</h2>
+        <h2 className="category-heading">Best Restaurants near You</h2>
       <div id="main-body-container">
 
         <div className="category-details-container" id="listings-main">

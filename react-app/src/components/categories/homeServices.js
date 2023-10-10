@@ -1,18 +1,22 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useHistory } from "react-router-dom";
 import { thunkGetListings } from "../../store/listings";
 import ListingTile from "../ListingTile";
-import "./all-listings.css";
+import "./categories.css";
 import categories from "../categories";
 
-export const Listings = () => {
+export const HomeServicesListings = () => {
   const dispatch = useDispatch();
 
   const getListings = useSelector(
     (state) => state.listing.allListings
   );
 
-  const listings = Object.values(getListings);
+  const allListings = Object.values(getListings);
+
+  const listings = allListings.filter((listing)=> listing.category === "home services")
+//   console.log( "listings ============>>>>>>>>",   listings)
 
   useEffect(() => {
     dispatch(thunkGetListings());
@@ -20,18 +24,17 @@ export const Listings = () => {
 
   if (!listings.length) return null;
 
-  const showAlert = () => {
-    window.alert("Coming Soon");
-  };
+
 
   return (
     <>
-    {categories}
 
 
-<h2 id="listing-heading">View All Listings Here</h2>
+
+        <h2 className="category-heading">Best Restaurants near You</h2>
       <div id="main-body-container">
-        <div className="listing-details-container" id="listings-main">
+
+        <div className="category-details-container" id="listings-main">
           {listings.map((listing) => (
             <ListingTile key={listing.id} listing={listing} />
           ))}

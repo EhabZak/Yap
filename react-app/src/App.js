@@ -12,6 +12,12 @@ import { GetListingToUpdate } from "./components/Listing/GetListingToUpdate";
 import { ManageListings } from "./components/ManageListings";
 import { ManageReviews } from "./components/ManageReviews";
 import { RestaurantsListings } from "./components/categories/Restaurants";
+import { ShoppingListings } from "./components/categories/shopping";
+import { NightLifeListings } from "./components/categories/nightLife";
+import { ActiveLifeListings } from "./components/categories/activeLife";
+import { SpaListings } from "./components/categories/spa";
+import { AutomotiveListings } from "./components/categories/automotive";
+import { HomeServicesListings } from "./components/categories/homeServices";
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +57,24 @@ function App() {
           </Route>
           <Route exact path="/restaurants">
             <RestaurantsListings />
+          </Route>
+          <Route exact path="/shopping">
+            <ShoppingListings />
+          </Route>
+          <Route exact path="/nightlife">
+            <NightLifeListings />
+          </Route>
+          <Route exact path="/activelife">
+            <ActiveLifeListings />
+          </Route>
+          <Route exact path="/spa">
+            <SpaListings />
+          </Route>
+          <Route exact path="/automotive">
+            <AutomotiveListings />
+          </Route>
+          <Route exact path="/homeservices">
+            <HomeServicesListings />
           </Route>
 
         </Switch>

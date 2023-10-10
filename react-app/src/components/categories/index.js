@@ -14,50 +14,62 @@ const showAlert = () => {
 let categories = (
     <div id="outer-category-container" >
         <ul id="categories-bar-container">
+
             <NavLink exact to="/restaurants">
             <li >
                 <div className="image-container" >
                     <img src={restaurants} alt="restaurants" ></img>
                 </div>
-
             </li>
             </NavLink>
-            <li onClick={showAlert}>
+
+            <NavLink exact to="/shopping">
+            <li >
                 <div className="image-container">
                     <img src={shopping} alt="shopping" ></img>
                 </div>
-                {/* <p>Grocery</p> */}
             </li>
-            <li onClick={showAlert}>
+            </NavLink>
+
+            <NavLink exact to="/nightlife">
+            <li >
                 <div className="image-container">
                     <img src={nightLife} alt="nightlife" ></img>
                 </div>
-                {/* <p>Convenience</p> */}
             </li>
-            <li onClick={showAlert}>
+            </NavLink>
+
+            <NavLink exact to="/activelife">
+            <li >
                 <div className="image-container">
                     <img src={activeLife} alt="active life" ></img>
                 </div>
-                {/* <p>Pizza</p> */}
             </li>
-            <li onClick={showAlert}>
+            </NavLink>
+
+            <NavLink exact to="/spa">
+            <li >
                 <div className="image-container">
                     <img src={spa} alt="spa" ></img>
                 </div>
-                {/* <p>Alcohol</p> */}
             </li>
-            <li onClick={showAlert}>
+            </NavLink>
+
+            <NavLink exact to="/automotive">
+            <li >
                 <div className="image-container">
                     <img src={automotive} alt="automotive" ></img>
                 </div>
-                {/* <p>Pharmacy</p> */}
             </li>
-            <li onClick={showAlert}>
+            </NavLink>
+
+            <NavLink exact to="/homeservices">
+            <li >
                 <div className="image-container">
                     <img src={home} alt="home services" ></img>
                 </div>
-                {/* <p>Baby</p> */}
             </li>
+            </NavLink>
 
         </ul>
     </div>

@@ -67,3 +67,6 @@ border-radius: 4px;
     height: 200px;
     /* border-radius: 10px 10px 10px 10px; */
 }
+.category-heading{
+    font-family: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
