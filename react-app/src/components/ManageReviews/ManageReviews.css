@@ -1,24 +1,21 @@
 body {
-    font-family: 'Wix Madefor Display', sans-serif;
+    font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-/* .all-reviews-container {
-    border: 1px solid red;
-} */
 
 .review-container h4 {
-    /* border: 1px solid red; */
+
     margin: 0px 5px 0px 0px;
 }
 
 .review-container div {
-    /* border: 1px solid red; */
+
     display: flex;
     margin: 5px;
 }
 
 .review-container a {
-    /* border: 1px solid red; */
+
     display: flex;
     text-decoration: none;
     color: blue;
@@ -32,12 +29,15 @@ body {
 }
 
 .review-stars div {
-    /* border: 1px solid red; */
+
     margin: 0px;
 }
 
 .update-delete-button button {
-    /* border: 1px solid red; */
+
     margin: 5px;
     padding: 5px;
+}
+.fa-solid{
+    color: rgb(255, 100, 61);
 }

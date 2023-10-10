@@ -1,4 +1,6 @@
-
+body {
+  font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
 a,button {
     cursor: pointer;
 }
@@ -16,20 +18,20 @@ a,button {
     display:flex;
     flex-wrap: wrap;
     gap: 20px;
-     /* justify-content: center; */
+
      padding: 0px;
-     /* margin-left: 25%; */
+
 }
 
 .one-listings-container{
+  
+    font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
     display: flex;
-    /* flex-direction: column; */
-    flex-basis: 50%;
+    flex-direction: row ;
+    flex-basis: 40%;
     border: 1px solid black;
-    /* background-color: blueviolet; */
-    /* justify-content: center; */
-  /* align-items: center; */
-  /* border-radius: 10px 10px 10px 10px; */
+
   cursor: pointer;
   padding-top: 24px !important;
     padding-right: 24px !important;
@@ -63,7 +65,7 @@ cursor: pointer;
 } */
 
 
-.image-container {
+/* .image-container {
     position: relative;
     width: 60px;
   }
@@ -84,7 +86,7 @@ cursor: pointer;
 
   .image-container:hover::before {
     opacity: 1;
-  }
+  } */
 
   /* #cat-hr{
     width:95%;
@@ -139,3 +141,18 @@ cursor: pointer;
   width: 80%;
   margin-left: 30px;
 } */
+#listing-heading{
+  font-family: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    -webkit-letter-spacing: -0.4px;
+    -moz-letter-spacing: -0.4px;
+    -ms-letter-spacing: -0.4px;
+    letter-spacing: -0.4px;
+    line-height: 36px;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    color: rgba(45,46,47,1);
+    text-align: center;
+}

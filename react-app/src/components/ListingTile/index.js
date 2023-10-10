@@ -18,6 +18,7 @@ const ListingTile = ({ listing }) => {
     close_hours,
     avg_rating,
     image_url,
+    num_reviews,
   } = listing;
 
   const history = useHistory();
@@ -38,12 +39,12 @@ const ListingTile = ({ listing }) => {
         ></img>
       </div>
       <div className="name-address-rating">
-        
+
         <i className="fa-solid fa-star" id='review-rating-star'></i>
-        <i class="fa-solid fa-square-star"></i>
+        <i className="fa-solid fa-square-star"></i>
 
 
-        <p id="review-in-block">{avg_rating} (I need to add the number of reviews)</p>
+        <p id="review-in-block">{avg_rating} ({num_reviews} reviews)</p>
         <div>
           <p>{category}</p><span> {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}</span>
         </div>

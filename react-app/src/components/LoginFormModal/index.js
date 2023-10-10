@@ -10,6 +10,8 @@ function LoginFormModal() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
+//!
+  const [showMenu, setShowMenu] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +22,16 @@ function LoginFormModal() {
         closeModal()
     }
   };
-
+//! ///////////////////////////////////////////
+  const handleDemoButtonClick = (e) => {
+    e.preventDefault();
+    const demoEmail = "demo@aa.io";
+    const demoPassword = "password";
+    setShowMenu(false);
+    dispatch(login(demoEmail, demoPassword))
+    .then(closeModal)
+  };
+//! ////////////////////////////////////////
   return (
     <>
       <h1>Log In</h1>
@@ -49,6 +60,17 @@ function LoginFormModal() {
           />
         </label>
         <button type="submit">Log In</button>
+
+        <div id="demo-user-container">  
+          <button
+            className="buttons"
+            id="demo-user-button"
+            onClick={handleDemoButtonClick}
+
+          >
+            Demo User
+          </button>
+        </div>
       </form>
     </>
   );
