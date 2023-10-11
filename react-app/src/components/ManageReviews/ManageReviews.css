@@ -56,7 +56,7 @@ body {
     align-items: center;
 }
 
-#review-buttons button{
+.review-buttons button{
 
 
     border: none;
@@ -72,6 +72,21 @@ body {
     transition: background-color 0.3s;
 }
 
-#review-buttons button:hover{
+.review-buttons button:hover{
     background-color: rgba(184, 0, 0, 1);
+}
+
+#create-button button{
+    border: none;
+    background-color: rgba(224,7,7,1);
+    color: rgba(255,255,255,1);
+    width: 120px;
+    border-radius: 4px;
+    height: 40px;
+    font-family: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif !important;;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    margin-right: 10px ;
+    transition: background-color 0.3s;
+    margin-bottom: 40px;
 }

@@ -58,15 +58,17 @@ export const ListingReviews = ({listingId}) => {
 
     return (
         <div className="all-reviews-container">
+            <div id="create-button">
             {!(reviewsList.find((review) => review.user_id === user.id )) && user.id !== listing.owner_id && user.id ?
                 <OpenModalButton
-                    className="delete-button"
+                    className="create-button"
                     buttonText='Create a Review'
                     modalComponent={<CreateReviewModal listing={listing}/>}
                 />
                     :
                 <></>
             }
+            </div>
             {reviewsList.map((review) => (
                 <div className="review-container" key={review.id}>
                     <div id="user-review-container">
@@ -92,7 +94,7 @@ export const ListingReviews = ({listingId}) => {
                     </div> */}
                     <div>
                         {review.user_id === user.id && (
-                            <div id="review-buttons">
+                            <div className="review-buttons">
                                 <OpenModalButton
                                     className="delete-button"
                                     buttonText='Delete'
