@@ -23,7 +23,7 @@ body {
 }
 
 .review-container {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(235,235,235,1);
     margin: 20px;
     font-size: 14px;
 }
@@ -40,4 +40,24 @@ body {
 }
 .fa-solid{
     color: rgb(255, 100, 61);
+}
+#user-review-container{
+    display: flex;
+    align-items: center;
+    gap: 10px
+    ;
+}
+.fa-circle-user{
+    font-size: 50px;
+}
+
+#review-stars-date{
+    display: flex;
+    align-items: center;
+}
+
+#review-buttons button{
+
+    background-color: aqua;
+    border: none;
 }
