@@ -34,13 +34,14 @@ export const UpdateReviewModal = ({ updateReview }) => {
 
     return (
         <div className="reviewModal">
+            <form onSubmit={handleSubmit} id='form-review'>
             <h2>Update your Review</h2>
-            <form onSubmit={handleSubmit}>
 
                 <div className="reviewForm">
 
                     <div className='starRatingContainer'>
-                        <div className='starsText'>Stars</div>
+                        <div className='starsText'>Star Rating</div>
+                        <div>
                         <div onClick={() => setStars(1)}
                             className=  { (stars >= 1 ? "fa-solid fa-star" : "fa-regular fa-star") }
                         >
@@ -60,6 +61,7 @@ export const UpdateReviewModal = ({ updateReview }) => {
                         <div onClick={() => setStars(5)}
                             className=  { (stars >= 5 ? "fa-solid fa-star" : "fa-regular fa-star") }
                         >
+                        </div>
                         </div>
                     </div>
                     <div className="textareaContainer">
