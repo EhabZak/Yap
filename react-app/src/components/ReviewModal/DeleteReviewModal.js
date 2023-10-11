@@ -22,13 +22,15 @@ export const DeleteReviewModal = ({ review }) => {
 
     return (
         <div className="deleteModal">
+            <div id="second-level-reviews">
             <div className="deleteTitle">
                 <h2 className="confirmDeleteTitle">Confirm Delete</h2>
                 <p className="deleteParagraph">Are you sure you want to delete this review?</p>
             </div>
-            <div className="deleteButtons">
-                <button className="b yesButton" onClick={handleClick}> Yes (Delete Review) </button>
-                <button className="b noButton" onClick={closeModal}> No (Keep Review) </button>
+            <div className="deleteButtons-container">
+                <button className="delete-button" onClick={handleClick}> Yes (Delete Review) </button>
+                <button className="delete-button" onClick={closeModal}> No (Keep Review) </button>
+            </div>
             </div>
         </div>
     )
