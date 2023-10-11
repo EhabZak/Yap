@@ -58,6 +58,20 @@ body {
 
 #review-buttons button{
 
-    background-color: aqua;
+
     border: none;
+    background-color: rgba(224,7,7,1);
+    color: rgba(255,255,255,1);
+    width: 56.35px;
+    border-radius: 4px;
+    height: 35px;
+    font-family: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif !important;;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    margin-right: 10px ;
+    transition: background-color 0.3s;
+}
+
+#review-buttons button:hover{
+    background-color: rgba(184, 0, 0, 1);
 }
