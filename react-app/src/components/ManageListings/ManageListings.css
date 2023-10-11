@@ -1,4 +1,4 @@
-.manage-listings-update-button, .manage-listings-create-btn, .delete-button {
+/* .manage-listings-update-button, .manage-listings-create-btn, .delete-button {
     font-family: 'Wix Madefor Display', sans-serif;
     font-weight: 500;
     background-color: red;
@@ -7,10 +7,59 @@
     padding: 4px 6px;
     border: none;
     border-radius: 7px;
-  }
-
+  } */
+.manage-container{
+  font-family: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif !important;
+}
   #delete-button button{
 
     background-color: red ;
     color: blue;
   }
+
+.listing-details-container{
+  font-family: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif !important;
+
+}
+
+.manage-listings-create-btn{
+
+  border: none;
+  background-color: rgba(224,7,7,1);
+  color: rgba(255,255,255,1);
+  width: 200px;
+  border-radius: 4px;
+  height: 35px;
+  font-family: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif !important;;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  margin-right: 10px ;
+  transition: background-color 0.3s;
+margin-left: 40px;
+margin-bottom: 40px;
+}
+
+.buttons-container{
+  margin-left: 40px;
+  margin-top: 10px;
+}
+
+.listing-details-container button{
+  border: none;
+  background-color: rgba(224,7,7,1);
+  color: rgba(255,255,255,1);
+  width: 56.35px;
+  border-radius: 4px;
+  height: 35px;
+  font-family: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif !important;;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  margin-right: 10px ;
+  transition: background-color 0.3s;
+
+}
+
+.listing-details-container button:hover{
+
+  background-color: rgba(184, 0, 0, 1);
+}
