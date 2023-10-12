@@ -33,7 +33,7 @@ function SignupFormModal() {
 		<div className="signup-Modal">
 			<h1>Sign Up</h1>
 			<form onSubmit={handleSubmit} id='form-signup'>
-				<ul>
+				<ul id="errors-container">
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
