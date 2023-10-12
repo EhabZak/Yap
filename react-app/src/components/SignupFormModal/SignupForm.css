@@ -1,0 +1,57 @@
+
+.signup-Modal{
+    height: 450px;
+    width: 300px;
+    z-index: 2;
+    font-family: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif !important;;
+}
+
+.signup-Modal h1{
+text-align: center;
+}
+
+
+#signup-labels-container{
+    display: flex;
+    flex-direction: column;
+    /* background-color: blue; */
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    z-index: 2;
+}
+
+#signup-button{
+    border: none;
+    background-color: rgba(224,7,7,1);
+    color: rgba(255,255,255,1);
+    width: 120px;
+    border-radius: 4px;
+    height: 40px;
+    font-family: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif !important;;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    margin-right: 10px ;
+    transition: background-color 0.3s;
+
+}
+
+#signup-labels-container input{
+
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 20px);
+    justify-content: start;
+    font-size: .75rem;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#signup-labels-container input,
+select{
+    border: 2px solid rgb(236, 234, 234);
+    background-color: rgb(236, 234, 234);
+    /* background-color: blue; */
+    height: 30px;
+    font-size: .75rem;
+}
