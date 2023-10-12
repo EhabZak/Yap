@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as reviewActions from '../../store/reviews'
+import { thunkGetListingReviews } from "../../store/reviews";
+import { thunkGetListingInfo } from "../../store/listings";
+import { thunkGetUserReviews } from "../../store/reviews";
 
 export const UpdateReviewModal = ({ updateReview }) => {
     const dispatch = useDispatch();
@@ -18,7 +21,12 @@ export const UpdateReviewModal = ({ updateReview }) => {
         try {
             await dispatch(
                 reviewActions.thunkUpdateReview({ stars, review }, updateReview.id)
-            ).then(closeModal)
+            ).then (() => {
+                dispatch(thunkGetListingReviews(updateReview.id))
+                dispatch(thunkGetListingInfo(updateReview.id))
+                dispatch(thunkGetUserReviews())
+                closeModal();
+            }).then(closeModal)
         } catch (error) {
             if (error) {
                 const data = await error.json()
@@ -30,17 +38,19 @@ export const UpdateReviewModal = ({ updateReview }) => {
 
     useEffect(() => {
         dispatch(reviewActions.thunkGetReviewInfo(updateReview.id))
+
     }, [dispatch, review, stars])
 
     return (
         <div className="reviewModal">
+            <form onSubmit={handleSubmit} id='form-review'>
             <h2>Update your Review</h2>
-            <form onSubmit={handleSubmit}>
 
                 <div className="reviewForm">
 
                     <div className='starRatingContainer'>
-                        <div className='starsText'>Stars</div>
+                        <div className='starsText'>Star Rating</div>
+                        <div>
                         <div onClick={() => setStars(1)}
                             className=  { (stars >= 1 ? "fa-solid fa-star" : "fa-regular fa-star") }
                         >
@@ -60,6 +70,7 @@ export const UpdateReviewModal = ({ updateReview }) => {
                         <div onClick={() => setStars(5)}
                             className=  { (stars >= 5 ? "fa-solid fa-star" : "fa-regular fa-star") }
                         >
+                        </div>
                         </div>
                     </div>
                     <div className="textareaContainer">

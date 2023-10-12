@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { thunkUpdateListing} from "../../store/listings";
 import './CreateListing.css'
+import image from '../../assets/create-image.png'
 
 export const UpdateListing = ({ listing }) => {
   const [address, setAddress] = useState(listing?.address);
@@ -130,13 +131,15 @@ export const UpdateListing = ({ listing }) => {
 
   return (
     <div className="create-listing-form-container">
+      <div id="form-outer-container">
       <form onSubmit={handleSubmit} id='form-container'>
+      <div id="form-inner-div">
         <h2>Update a New Listing</h2>
         <div className="location-container">
           <h3>Get Started</h3>
 
           <div className="form-div-container">
-            <div className="address-container label-container">
+            <div className="address-container input-container">
               <label>Store Address</label>
               <input
                 type="text"
@@ -154,7 +157,7 @@ export const UpdateListing = ({ listing }) => {
           </div>
 
           {/* <div className="form-div-container"> */}
-          <div className="city-container label-container" >
+          <div className="city-container input-container" >
             <label>City</label>
             <input
               type="text"
@@ -170,7 +173,7 @@ export const UpdateListing = ({ listing }) => {
               )}
           </div>
 
-          <div className="state-container label-container">
+          <div className="state-container input-container">
             <label>State</label>
             <input
               type="text"
@@ -189,7 +192,7 @@ export const UpdateListing = ({ listing }) => {
         </div>
 
         <div className="form-div-container">
-          <div className="name-container label-container">
+          <div className="name-container input-container">
             <label>Listing Name</label>
             <input
               type="text"
@@ -205,8 +208,8 @@ export const UpdateListing = ({ listing }) => {
               )}
           </div>
         </div>
-        <div className="form-div-container">
-          <div className="description-container label-container">
+        {/* <div className="form-div-container"> */}
+          <div className="description-container input-container">
             <label>Listing Description</label>
             <textarea
               type="text"
@@ -221,7 +224,7 @@ export const UpdateListing = ({ listing }) => {
                 <p className="backend-errors">{backendErrors.description}</p>
               )}
           </div>
-        </div>
+        {/* </div> */}
 
         <div className="form-div-container">
           <div className="category-container label-container">
@@ -365,7 +368,12 @@ export const UpdateListing = ({ listing }) => {
             Update Listing
           </button>
         </div>
+        </div>
       </form>
+      </div>
+      <div className="create-image-container">
+          <img src={image} alt="image" ></img>
+        </div>
     </div>
   );
 };

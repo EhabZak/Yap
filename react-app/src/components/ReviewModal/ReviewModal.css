@@ -1,0 +1,77 @@
+
+body {
+    font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#form-review{
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  height:350px;
+  border: solid 4px black;
+  /* border-radius: 10px; */
+  font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.reviewForm{
+    width: 100%;
+}
+
+.textareaContainer{
+    width: 100%;
+}
+.textareaContainer textarea {
+
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 90%;
+
+  height: 100px;
+    border: 2px solid black;
+    background-color: rgb(207, 219, 252);
+    /* width: 100%; */
+    resize: none;
+}
+/* .star-container{
+  text-align: center;
+} */
+
+.reviewButtons{
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.reviewButtons button{
+    border: none;
+    background-color: rgba(224,7,7,1);
+
+    color: rgba(255,255,255,1);
+    width: 120px;
+    border-radius: 4px;
+    height: 40px;
+    font-family: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif !important;;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    margin-right: 10px ;
+    transition: background-color 0.3s;
+
+}
+
+.reviewButtons button:hover{
+    background-color: rgba(184, 0, 0, 1);
+
+}
+
+.starRatingContainer{
+    margin-bottom: 20px;
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 10px;
+
+
+}

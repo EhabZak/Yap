@@ -58,37 +58,43 @@ export const ListingReviews = ({listingId}) => {
 
     return (
         <div className="all-reviews-container">
+            <div id="create-button">
             {!(reviewsList.find((review) => review.user_id === user.id )) && user.id !== listing.owner_id && user.id ?
                 <OpenModalButton
-                    className="delete-button"
+                    className="create-button"
                     buttonText='Create a Review'
                     modalComponent={<CreateReviewModal listing={listing}/>}
                 />
                     :
                 <></>
             }
+            </div>
             {reviewsList.map((review) => (
                 <div className="review-container" key={review.id}>
+                    <div id="user-review-container">
+                        <p id="user-logo"><i className="fa-solid fa-circle-user"></i> </p> {review.user}
+                    </div>
+                    <div id="review-stars-date">
                     <div className="review-stars">
-                        <h4>Stars: </h4>
+                        {/* <h4>Stars: </h4> */}
                         <div className= {review.stars >= 1 ? "fa-solid fa-star" : "fa-regular fa-star"}></div>
                         <div className= {review.stars >= 2 ? "fa-solid fa-star" : "fa-regular fa-star"}></div>
                         <div className= {review.stars >= 3 ? "fa-solid fa-star" : "fa-regular fa-star"}></div>
                         <div className= {review.stars >= 4 ? "fa-solid fa-star" : "fa-regular fa-star"}></div>
                         <div className= {review.stars >= 5 ? "fa-solid fa-star" : "fa-regular fa-star"}></div>
                     </div>
-                    <div>
-                        <h4>Reviewer: </h4> {review.user}
+                    <p>{lowBudgetDateConverter(review.updated_at)}</p>
                     </div>
                     <div className="review-div">
-                        <h4>Review:</h4> {review.review}
+                        {/* <h4>Review:</h4> */}
+                        {review.review}
                     </div>
-                    <div>
+                    {/* <div>
                         <h4>Updated on: </h4> {lowBudgetDateConverter(review.updated_at)}
-                    </div>
+                    </div> */}
                     <div>
                         {review.user_id === user.id && (
-                            <div>
+                            <div className="review-buttons">
                                 <OpenModalButton
                                     className="delete-button"
                                     buttonText='Delete'

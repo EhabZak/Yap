@@ -19,7 +19,7 @@ export const DeleteListingModal = ({ listingId }) => {
         <p>
           Are you sure you want to remove this listing from the listings?
         </p>
-        <div className="yes-no-container">
+        <div className="delete-listing-button-container">
 
           <button className="yes-button" type="button" onClick={handleClick}>
             Yes (Delete listing)

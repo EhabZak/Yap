@@ -1,6 +1,7 @@
 .delete-modal-content{
-    border: red solid 4px;
-    /* border-radius: 10px; */
+    border:  solid 4px black;
+
+    font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .yes-no-container{
@@ -12,14 +13,25 @@ margin-bottom: 20px;
 
 }
 
+.delete-listing-button-container{
+  display: flex;
+  justify-content: center;
 
-.yes-no-container button {
-margin-left: 10px;
-margin-right: 10px;
-background-color:  white;
-  /* border: red solid 1px; */
-  /* box-shadow: 3px 3px 2px black; */
-  color: red;
-  height: 30px;
-  border-radius: 7px;
+}
+
+.delete-listing-button-container button {
+  border: none;
+    background-color: rgba(224, 7, 7, 1);
+
+    color: rgba(255, 255, 255, 1);
+    width: 150px;
+    border-radius: 4px;
+    height: 40px;
+    font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    ;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
 }

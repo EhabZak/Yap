@@ -44,31 +44,33 @@ export const CreateReviewModal = ({ listing }) => {
 
   return (
     <div className="reviewModal">
-      <h2>Create a Review</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} >
+        <h2>Create a Review</h2>
         <div className="reviewForm">
           <div className="starRatingContainer">
-            <div className="starsText">Stars</div>
-            <div
-              onClick={() => setStars(1)}
-              className={ (stars >= 1 ? "fa-solid fa-star" : "fa-regular fa-star") }
-            ></div>
-            <div
-              onClick={() => setStars(2)}
-              className={ (stars >= 2 ? "fa-solid fa-star" : "fa-regular fa-star") }
-            ></div>
-            <div
-              onClick={() => setStars(3)}
-              className={ (stars >= 3 ? "fa-solid fa-star" : "fa-regular fa-star") }
-            ></div>
-            <div
-              onClick={() => setStars(4)}
-              className={ (stars >= 4 ? "fa-solid fa-star" : "fa-regular fa-star") }
-            ></div>
-            <div
-              onClick={() => setStars(5)}
-              className={ (stars >= 5 ? "fa-solid fa-star" : "fa-regular fa-star") }
-            ></div>
+            <div className="starsText">Star Rating</div>
+            <div>
+              <div
+                onClick={() => setStars(1)}
+                className={(stars >= 1 ? "fa-solid fa-star" : "fa-regular fa-star")}
+              ></div>
+              <div
+                onClick={() => setStars(2)}
+                className={(stars >= 2 ? "fa-solid fa-star" : "fa-regular fa-star")}
+              ></div>
+              <div
+                onClick={() => setStars(3)}
+                className={(stars >= 3 ? "fa-solid fa-star" : "fa-regular fa-star")}
+              ></div>
+              <div
+                onClick={() => setStars(4)}
+                className={(stars >= 4 ? "fa-solid fa-star" : "fa-regular fa-star")}
+              ></div>
+              <div
+                onClick={() => setStars(5)}
+                className={(stars >= 5 ? "fa-solid fa-star" : "fa-regular fa-star")}
+              ></div>
+            </div>
           </div>
           {!stars && submitted && (
             <div className="error">Star review is needed</div>
@@ -89,7 +91,7 @@ export const CreateReviewModal = ({ listing }) => {
           )}
         </div>
         <div className="reviewButtons">
-          <button className="b yesButton"> Create Review </button>
+          <button className="b yesButton"> Submit Review </button>
           <button className="b noButton" onClick={closeModal}>
             {" "}
             Cancel Review{" "}

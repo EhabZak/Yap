@@ -57,7 +57,7 @@ export const ManageReviews = () => {
                     <div>
                         <h4>Updated on: </h4> {lowBudgetDateConverter(review.updated_at)}
                     </div>
-                    <div className="update-delete-button">
+                    <div className="review-buttons">
                         <OpenModalButton
                             className="delete-button"
                             buttonText="Delete"
