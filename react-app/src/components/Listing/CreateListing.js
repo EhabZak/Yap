@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { thunkCreateListing } from "../../store/listings";
 import './CreateListing.css'
+import image from '../../assets/create-image.png'
 
 export const CreateListing = ({ user }) => {
   const [address, setAddress] = useState("");
@@ -126,243 +127,253 @@ export const CreateListing = ({ user }) => {
   };
 
   return (
-    <div className="create-listing-form-container">
-      <form onSubmit={handleSubmit} id='form-container'>
-        <h2>Add a New Business</h2>
-        <div className="location-container">
-          <h3>Get Started</h3>
 
-          <div className="form-div-container">
-            <div className="address-container input-container">
-              <label>Store Address</label>
+    <div className="create-listing-form-container">
+
+      <div id="form-outer-container">
+        <form onSubmit={handleSubmit} id='form-container'>
+          <div id="form-inner-div">
+          <h2>Add a New Business</h2>
+          <div className="location-container">
+            <h3>Get Started</h3>
+
+            <div className="form-div-container">
+              <div className="address-container input-container">
+                <label>Store Address</label>
+                <input
+                  type="text"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                // placeholder="Store Address"
+                />
+                {errors.address && submitted && (
+                  <p className="on-submit-errors">{errors.address}</p>
+                )}
+                {backendErrors.address && submitted && (
+                  <p className="backend-errors">{backendErrors.address}</p>
+                )}
+              </div>
+            </div>
+
+            {/* <div className="form-div-container"> */}
+            <div className="city-container input-container" >
+              <label>City</label>
               <input
                 type="text"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                // placeholder="Store Address"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              // placeholder="City"
               />
-              {errors.address && submitted && (
-                <p className="on-submit-errors">{errors.address}</p>
+              {errors.city && submitted && (
+                <p className="on-submit-errors">{errors.city}</p>
               )}
-              {backendErrors.address && submitted && (
-                <p className="backend-errors">{backendErrors.address}</p>
+              {backendErrors.city && submitted && (
+                <p className="backend-errors">{backendErrors.city}</p>
+              )}
+            </div>
+
+            <div className="state-container input-container">
+              <label>State</label>
+              <input
+                type="text"
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+              // placeholder="State"
+              />
+              {errors.state && submitted && (
+                <p className="on-submit-errors">{errors.state}</p>
+              )}
+              {backendErrors.state && submitted && (
+                <p className="backend-errors">{backendErrors.state}</p>
+              )}
+            </div>
+            {/* </div> */}
+          </div>
+
+          <div className="form-div-container">
+            <div className="name-container input-container">
+              <label>Listing Name</label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              // placeholder="Listing Name"
+              />
+              {errors.name && submitted && (
+                <p className="on-submit-errors">{errors.name}</p>
+              )}
+              {backendErrors.name && submitted && (
+                <p className="backend-errors">{backendErrors.name}</p>
+              )}
+            </div>
+          </div>
+          {/* <div className="form-div-container"> */}
+            <div className="description-container input-container">
+              <label>Listing Description</label>
+              <textarea
+                type="text"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              // placeholder="Listing Description"
+              />
+              {errors.description && submitted && (
+                <p className="on-submit-errors">{errors.description}</p>
+              )}
+              {backendErrors.description && submitted && (
+                <p className="backend-errors">{backendErrors.description}</p>
+              )}
+            </div>
+          {/* </div> */}
+
+          <div className="form-div-container">
+            <div className="category-container label-container">
+              <label>Listing Category</label>
+              <select onChange={(e) => setCategory(e.target.value)}>
+                <option value="0">Select Category</option>
+                <option value="listing">Listing</option>
+                <option value="shopping">Shopping</option>
+                <option value="nightlife">Nightlife</option>
+                <option value="active life">Active Life</option>
+                <option value="Spa">Beauty & Spa</option>
+                <option value="automotive">Automotive</option>
+                <option value="home services">Home services</option>
+                <option value="Other">Other</option>
+              </select>
+              {errors.category && submitted && (
+                <p className="on-submit-errors">{errors.category}</p>
               )}
             </div>
           </div>
 
-          {/* <div className="form-div-container"> */}
-          <div className="city-container input-container" >
-            <label>City</label>
-            <input
-              type="text"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              // placeholder="City"
-            />
-            {errors.city && submitted && (
-              <p className="on-submit-errors">{errors.city}</p>
-            )}
-            {backendErrors.city && submitted && (
-                <p className="backend-errors">{backendErrors.city}</p>
+          <div className="form-div-container">
+            <div className="price-container label-container">
+              <label>Listing Price</label>
+              <select onChange={(e) => setPrice(e.target.value)}>
+                <option value="0">Select Expensiveness</option>
+                <option value="1">$</option>
+                <option value="2">$$</option>
+                <option value="3">$$$</option>
+              </select>
+              {errors.price && submitted && (
+                <p className="on-submit-errors">{errors.price}</p>
               )}
+            </div>
           </div>
 
-          <div className="state-container input-container">
-            <label>State</label>
-            <input
-              type="text"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-              // placeholder="State"
-            />
-            {errors.state && submitted && (
-              <p className="on-submit-errors">{errors.state}</p>
-            )}
-            {backendErrors.state && submitted && (
-                <p className="backend-errors">{backendErrors.state}</p>
+          <div className="form-div-container">
+            <div className="store-open-hours-container label-container">
+              <label>Listing Open Hours</label>
+              <select onChange={(e) => setOpenHours(e.target.value)}>
+                <option value="0">Select Open Hours</option>
+                <option value="1:00">1:00</option>
+                <option value="1:30">1:30</option>
+                <option value="2:00">2:00</option>
+                <option value="2:30">2:30</option>
+                <option value="3:00">3:00</option>
+                <option value="3:30">3:30</option>
+                <option value="4:00">4:00</option>
+                <option value="4:30">4:30</option>
+                <option value="5:00">5:00</option>
+                <option value="5:30">5:30</option>
+                <option value="6:00">6:00</option>
+                <option value="6:30">6:30</option>
+                <option value="7:00">7:00</option>
+                <option value="7:30">7:30</option>
+                <option value="8:00">8:00</option>
+                <option value="8:30">8:30</option>
+                <option value="9:00">9:00</option>
+                <option value="9:30">9:30</option>
+                <option value="10:00">10:00</option>
+                <option value="10:30">10:30</option>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+              </select>
+              {errors.open_hours && submitted && (
+                <p className="on-submit-errors">{errors.open_hours}</p>
               )}
-          </div>
-          {/* </div> */}
-        </div>
-
-        <div className="form-div-container">
-          <div className="name-container input-container">
-            <label>Listing Name</label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              // placeholder="Listing Name"
-            />
-            {errors.name && submitted && (
-              <p className="on-submit-errors">{errors.name}</p>
-            )}
-            {backendErrors.name && submitted && (
-                <p className="backend-errors">{backendErrors.name}</p>
+            </div>
+            <div className="store-close-hours-container label-container">
+              <label>Listing Close Hours</label>
+              <select onChange={(e) => setCloseHours(e.target.value)}>
+                <option value="0">Select Close Hours</option>
+                <option value="1:00">1:00</option>
+                <option value="1:30">1:30</option>
+                <option value="2:00">2:00</option>
+                <option value="2:30">2:30</option>
+                <option value="3:00">3:00</option>
+                <option value="3:30">3:30</option>
+                <option value="4:00">4:00</option>
+                <option value="4:30">4:30</option>
+                <option value="5:00">5:00</option>
+                <option value="5:30">5:30</option>
+                <option value="6:00">6:00</option>
+                <option value="6:30">6:30</option>
+                <option value="7:00">7:00</option>
+                <option value="7:30">7:30</option>
+                <option value="8:00">8:00</option>
+                <option value="8:30">8:30</option>
+                <option value="9:00">9:00</option>
+                <option value="9:30">9:30</option>
+                <option value="10:00">10:00</option>
+                <option value="10:30">10:30</option>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+              </select>
+              {errors.close_hours && submitted && (
+                <p className="on-submit-errors">{errors.close_hours}</p>
               )}
+            </div>
           </div>
-        </div>
-        <div className="form-div-container">
-          <div className="description-container input-container">
-            <label>Listing Description</label>
-            <textarea
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              // placeholder="Listing Description"
-            />
-            {errors.description && submitted && (
-              <p className="on-submit-errors">{errors.description}</p>
-            )}
-            {backendErrors.description && submitted && (
-                <p className="backend-errors">{backendErrors.description}</p>
+
+          <div className="images-container ">
+            <h3>Liven up your business with photos</h3>
+            <p>Submit a link to at least one photo to publish your listing.</p>
+            <div className="image-url-container label-container">
+              <input
+                type="url"
+                value={image_url}
+                onChange={(e) => setImageUrl(e.target.value)}
+                placeholder="Preview Image URL"
+              />
+              {errors.image_url && submitted && (
+                <p className="on-submit-errors">{errors.image_url}</p>
               )}
+            </div>
           </div>
+
+          <div className="button-container">
+            <button
+              className="create-listing-button"
+              type="submit"
+              disabled={
+                !(
+                  address ||
+                  city ||
+                  state ||
+                  name ||
+                  category ||
+                  description ||
+                  price ||
+                  open_hours ||
+                  close_hours ||
+                  image_url
+                )
+              }
+            >
+              Create Business
+            </button>
+          </div>
+          </div>
+        </form>
+        </div>
+        <div className="create-image-container">
+          <img src={image} alt="image" ></img>
         </div>
 
-        <div className="form-div-container">
-          <div className="category-container label-container">
-            <label>Listing Category</label>
-            <select onChange={(e) => setCategory(e.target.value)}>
-              <option value="0">Select Category</option>
-              <option value="listing">Listing</option>
-              <option value="shopping">Shopping</option>
-              <option value="nightlife">Nightlife</option>
-              <option value="active life">Active Life</option>
-              <option value="Spa">Beauty & Spa</option>
-              <option value="automotive">Automotive</option>
-              <option value="home services">Home services</option>
-              <option value="Other">Other</option>
-            </select>
-            {errors.category && submitted && (
-              <p className="on-submit-errors">{errors.category}</p>
-            )}
-          </div>
-        </div>
-
-        <div className="form-div-container">
-          <div className="price-container label-container">
-            <label>Listing Price</label>
-            <select onChange={(e) => setPrice(e.target.value)}>
-              <option value="0">Select Expensiveness</option>
-              <option value="1">$</option>
-              <option value="2">$$</option>
-              <option value="3">$$$</option>
-            </select>
-            {errors.price && submitted && (
-              <p className="on-submit-errors">{errors.price}</p>
-            )}
-          </div>
-        </div>
-
-        <div className="form-div-container">
-          <div className="store-open-hours-container label-container">
-            <label>Listing Open Hours</label>
-            <select onChange={(e) => setOpenHours(e.target.value)}>
-              <option value="0">Select Open Hours</option>
-              <option value="1:00">1:00</option>
-              <option value="1:30">1:30</option>
-              <option value="2:00">2:00</option>
-              <option value="2:30">2:30</option>
-              <option value="3:00">3:00</option>
-              <option value="3:30">3:30</option>
-              <option value="4:00">4:00</option>
-              <option value="4:30">4:30</option>
-              <option value="5:00">5:00</option>
-              <option value="5:30">5:30</option>
-              <option value="6:00">6:00</option>
-              <option value="6:30">6:30</option>
-              <option value="7:00">7:00</option>
-              <option value="7:30">7:30</option>
-              <option value="8:00">8:00</option>
-              <option value="8:30">8:30</option>
-              <option value="9:00">9:00</option>
-              <option value="9:30">9:30</option>
-              <option value="10:00">10:00</option>
-              <option value="10:30">10:30</option>
-              <option value="11:00">11:00</option>
-              <option value="11:30">11:30</option>
-              <option value="12:00">12:00</option>
-              <option value="12:30">12:30</option>
-            </select>
-            {errors.open_hours && submitted && (
-              <p className="on-submit-errors">{errors.open_hours}</p>
-            )}
-          </div>
-          <div className="store-close-hours-container label-container">
-            <label>Listing Close Hours</label>
-            <select onChange={(e) => setCloseHours(e.target.value)}>
-              <option value="0">Select Close Hours</option>
-              <option value="1:00">1:00</option>
-              <option value="1:30">1:30</option>
-              <option value="2:00">2:00</option>
-              <option value="2:30">2:30</option>
-              <option value="3:00">3:00</option>
-              <option value="3:30">3:30</option>
-              <option value="4:00">4:00</option>
-              <option value="4:30">4:30</option>
-              <option value="5:00">5:00</option>
-              <option value="5:30">5:30</option>
-              <option value="6:00">6:00</option>
-              <option value="6:30">6:30</option>
-              <option value="7:00">7:00</option>
-              <option value="7:30">7:30</option>
-              <option value="8:00">8:00</option>
-              <option value="8:30">8:30</option>
-              <option value="9:00">9:00</option>
-              <option value="9:30">9:30</option>
-              <option value="10:00">10:00</option>
-              <option value="10:30">10:30</option>
-              <option value="11:00">11:00</option>
-              <option value="11:30">11:30</option>
-              <option value="12:00">12:00</option>
-              <option value="12:30">12:30</option>
-            </select>
-            {errors.close_hours && submitted && (
-              <p className="on-submit-errors">{errors.close_hours}</p>
-            )}
-          </div>
-        </div>
-
-        <div className="images-container ">
-          <h3>Liven up your business with photos</h3>
-          <p>Submit a link to at least one photo to publish your listing.</p>
-          <div className="image-url-container label-container">
-            <input
-              type="url"
-              value={image_url}
-              onChange={(e) => setImageUrl(e.target.value)}
-              placeholder="Preview Image URL"
-            />
-            {errors.image_url && submitted && (
-              <p className="on-submit-errors">{errors.image_url}</p>
-            )}
-          </div>
-        </div>
-
-        <div className="button-container">
-          <button
-            className="create-listing-button"
-            type="submit"
-            disabled={
-              !(
-                address ||
-                city ||
-                state ||
-                name ||
-                category ||
-                description ||
-                price ||
-                open_hours ||
-                close_hours ||
-                image_url
-              )
-            }
-          >
-            Create Business
-          </button>
-        </div>
-      </form>
     </div>
   );
 };

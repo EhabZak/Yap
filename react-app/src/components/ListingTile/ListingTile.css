@@ -2,13 +2,53 @@ body {
     font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
-.star_icon-1{
+/* .star_icon-1{
     width: 1em;
     height: 1em;
-    /* background-color: red; */
+
     color: blue;
-    /* fill: blue; */
-}
+
+} */
 #review-rating-star{
     color: gold;
+}
+
+#name-span{
+    font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+font-size: 20px;
+font-weight: 600;
+}
+
+#review-in-block{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+#rating{
+    font-weight: 500;
+}
+
+#category-container{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+#category-item{
+    /* text-decoration: none; */
+    box-sizing: border-box;
+    color: rgba(110,112,114,1);
+    padding: 4px;
+    border-radius: 4px;
+    height: 25px;
+    white-space: nowrap;
+    background-color: rgba(240,240,240,1);
+    border: 0;
+    /* outline: none; */
+    /* margin: 0px; */
+    /* vertical-align: center; */
+    text-align: center;
+   font-size: 12px;
+    /* opacity: 1; */
+    font-weight: 500;
+
 }

@@ -1,50 +1,44 @@
 body {
     box-sizing: border-box;
-    font-family: 'Wix Madefor Display', sans-serif;
+    font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin: 0px;
+    /* height: 1000px; */
 }
 
 
 .create-listing-form-container {
 
-    background-color: lightblue;
-    display: flex;
-    justify-content: flex-end;
 
-    /* background-image: url('../../assets/burger.jpeg'); */
-    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+
     background-repeat: no-repeat;
-    height: 100vh;
-    /* margin-bottom: 20px; */
-    min-height: 1500px;
-    /* min-height: auto; */
+
+    background-color: rgb(224, 228, 233);
+    height: 800px;
 
 
 }
 
 #form-container {
+    background-color: rgba(255,255,255,1);
+
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 300px;
-    background-color: white;
-    margin-right: 50px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    /* height: calc(100% - 200px); */
-    min-height: auto;
-    height: 1300px;
+    width:100%;
+    max-width: 660px;
+    margin-right: auto;
+    max-height: 100%;
+    height: 800px;
+
 }
 
-/* #form-container P{
-color: lime;
-font-size: .5 rem;
-} */
 
 #form-container h2 {
     align-self: center;
     font-size: 5 rem;
-    /* color: red; */
+    color: red;
 }
 
 #form-container h3 {
@@ -64,9 +58,6 @@ font-size: .5 rem;
     width: calc(100% - 20px);
     justify-content: start;
     font-size: .75rem;
-    /* background-color: violet; */
-    /* margin-left: 10px; */
-    /* margin-right: 10px; */
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -92,37 +83,18 @@ select {
     margin-right: 10px;
 }
 
-
-/* #p-in-textarea {
-    font-size: 12px;
-
+.description-container{
+    width: 100%;
+    /* background-color: purple; */
 }
-
-textarea {
+.description-container textarea{
     height: 100px;
-    border: 2px solid black;
-    background-color: rgb(207, 219, 252);
+
     width: 100%;
     resize: none;
 
 }
 
-#text-area-footer {
-    border-bottom: solid black 2px;
-    margin-top: 20px;
-}
-
-#price-div {
-    display: flex;
-
-    height: 20px;
-    align-items: center;
-    gap: 5px;
-}
-
-#price-div input {
-    width: 100%;
-} */
 
 .button-container {
     display: flex;
@@ -132,10 +104,9 @@ textarea {
 .create-listing-button {
     margin-top: 30px;
     box-shadow: 2px 2px;
-    /* background-color: black; */
-    /* background-color: red; */
+
     border: none;
-    /* color: white; */
+
     background-color: rgba(224,7,7,1);
     color: rgba(255,255,255,1);
     width: 250px;
@@ -174,8 +145,10 @@ textarea {
 
 .input-container {
     position: relative;
-    width: 250px; /* Adjust the width as needed */
+    width: calc(100% - 40px);
     padding-bottom: 20px;
+    margin-left: 10px;
+
   }
 
   .input-container input[type="text"] {
@@ -214,12 +187,29 @@ textarea {
   }
 
 
-  /* .input-container input[type="text"]:focus + label {
-    top: -25px;
-    font-size: 12px;
-    color: #333;
-    background-color: white;
-    border: 1px solid #333;
 
 
-  } */
+  .create-image-container{
+    display: flex;
+    height: 100%;
+    width: 70%;
+  }
+
+
+  .create-image-container img{
+
+    height: 800px;
+    width: 100%;
+  }
+
+  #form-outer-container{
+    display: flex;
+    justify-content: space-around;
+    width: 660px;
+    background-color: purple;
+height: 800px;
+  }
+
+#form-inner-div{
+    max-height: 100%;
+}
