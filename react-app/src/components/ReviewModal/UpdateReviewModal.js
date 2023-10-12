@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as reviewActions from '../../store/reviews'
+import { thunkGetListingReviews } from "../../store/reviews";
+import { thunkGetListingInfo } from "../../store/listings";
+import { thunkGetUserReviews } from "../../store/reviews";
 
 export const UpdateReviewModal = ({ updateReview }) => {
     const dispatch = useDispatch();
@@ -18,7 +21,12 @@ export const UpdateReviewModal = ({ updateReview }) => {
         try {
             await dispatch(
                 reviewActions.thunkUpdateReview({ stars, review }, updateReview.id)
-            ).then(closeModal)
+            ).then (() => {
+                dispatch(thunkGetListingReviews(updateReview.id))
+                dispatch(thunkGetListingInfo(updateReview.id))
+                dispatch(thunkGetUserReviews())
+                closeModal();
+            }).then(closeModal)
         } catch (error) {
             if (error) {
                 const data = await error.json()
@@ -30,6 +38,7 @@ export const UpdateReviewModal = ({ updateReview }) => {
 
     useEffect(() => {
         dispatch(reviewActions.thunkGetReviewInfo(updateReview.id))
+
     }, [dispatch, review, stars])
 
     return (
