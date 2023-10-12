@@ -39,18 +39,35 @@ const ListingTile = ({ listing }) => {
         ></img>
       </div>
       <div className="name-address-rating">
+<<<<<<< HEAD
+        <h3 id="address-span">{name} </h3>
+=======
+        <p id="name-span">{name} </p>
+>>>>>>> fixing-bugs
 
+
+
+
+
+<<<<<<< HEAD
+        <p id="review-in-block">
         <i className="fa-solid fa-star" id='review-rating-star'></i>
-        <i className="fa-solid fa-square-star"></i>
-
-
-        <p id="review-in-block">{avg_rating} ({num_reviews} reviews)</p>
-        <div>
-          <p>{category}</p><span> {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}</span>
+          {avg_rating} ({num_reviews} reviews)</p>
+        <div className="category-style">
+          <p>{category} </p> <div> {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}</div>
         </div>
         <p>Open until {close_hours} PM</p>
-        <p id="address-span">{name} </p>
-        <p>{address} </p>
+        {/* <p>{address} </p> */}
+=======
+        <div id="review-in-block"> <i className="fa-solid fa-star" id='review-rating-star'></i><div id="rating">{avg_rating}</div> <div>({num_reviews} reviews)</div></div>
+        <div >
+          <div id="category-container">
+          <p id="category-item">{category}</p><p> {price === 3 ? "$$$" : price === 2 ? "$$" : "$"}</p>
+          </div>
+        </div>
+        <p>Open until {close_hours} PM</p>
+        
+>>>>>>> fixing-bugs
       </div>
     </div>
   );
