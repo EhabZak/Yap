@@ -44,33 +44,33 @@ export const CreateReviewModal = ({ listing }) => {
 
   return (
     <div className="reviewModal">
-      <form onSubmit={handleSubmit} id='form-review'>
-      <h2>Create a Review</h2>
+      <form onSubmit={handleSubmit} >
+        <h2>Create a Review</h2>
         <div className="reviewForm">
           <div className="starRatingContainer">
             <div className="starsText">Star Rating</div>
-<div>
-            <div
-              onClick={() => setStars(1)}
-              className={ (stars >= 1 ? "fa-solid fa-star" : "fa-regular fa-star") }
-            ></div>
-            <div
-              onClick={() => setStars(2)}
-              className={ (stars >= 2 ? "fa-solid fa-star" : "fa-regular fa-star") }
-            ></div>
-            <div
-              onClick={() => setStars(3)}
-              className={ (stars >= 3 ? "fa-solid fa-star" : "fa-regular fa-star") }
-            ></div>
-            <div
-              onClick={() => setStars(4)}
-              className={ (stars >= 4 ? "fa-solid fa-star" : "fa-regular fa-star") }
-            ></div>
-            <div
-              onClick={() => setStars(5)}
-              className={ (stars >= 5 ? "fa-solid fa-star" : "fa-regular fa-star") }
-            ></div>
-</div>
+            <div>
+              <div
+                onClick={() => setStars(1)}
+                className={(stars >= 1 ? "fa-solid fa-star" : "fa-regular fa-star")}
+              ></div>
+              <div
+                onClick={() => setStars(2)}
+                className={(stars >= 2 ? "fa-solid fa-star" : "fa-regular fa-star")}
+              ></div>
+              <div
+                onClick={() => setStars(3)}
+                className={(stars >= 3 ? "fa-solid fa-star" : "fa-regular fa-star")}
+              ></div>
+              <div
+                onClick={() => setStars(4)}
+                className={(stars >= 4 ? "fa-solid fa-star" : "fa-regular fa-star")}
+              ></div>
+              <div
+                onClick={() => setStars(5)}
+                className={(stars >= 5 ? "fa-solid fa-star" : "fa-regular fa-star")}
+              ></div>
+            </div>
           </div>
           {!stars && submitted && (
             <div className="error">Star review is needed</div>
