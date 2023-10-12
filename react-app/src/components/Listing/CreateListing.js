@@ -102,7 +102,7 @@ export const CreateListing = ({ user }) => {
         if (error.errors) {
           // const combinedErrors = { ...errors, errors: error.errors };
           // console.log("combinedErrors ==========>>>", combinedErrors)
-          console.log("addListing.errors ++++++++++++++>>>", error.errors)
+          // console.log("addListing.errors ++++++++++++++>>>", error.errors)
           setBackendErrors(error.errors);
         }
 

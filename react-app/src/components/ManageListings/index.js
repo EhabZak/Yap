@@ -31,7 +31,7 @@ export const ManageListings = () => {
   };
 
   return (
-    <div>
+    <div >
       <div className="manage-container">
         <h1>Manage Listings</h1>
         {/* {listingsList && listingsList.length <= 0 ? ( */}
@@ -44,7 +44,8 @@ export const ManageListings = () => {
         {/* ) : (
           ""
         )} */}
-      </div>
+      </div >
+      <div id="main-manage-container" >
       <div className="listing-details-container">
         {listingsList.map((listing) => (
           <div key={listing.id}>
@@ -67,6 +68,7 @@ export const ManageListings = () => {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );
