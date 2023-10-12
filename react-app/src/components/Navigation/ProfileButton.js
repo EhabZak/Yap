@@ -80,6 +80,7 @@ function ProfileButton({ user }) {
                 exact
                 to="/listings/current"
                 className="manage-listings-current menu-navLinks"
+                onClick={closeMenu}
               >
                 Manage Business
               </NavLink></div>
@@ -91,6 +92,7 @@ function ProfileButton({ user }) {
                 exact
                 to="/reviews/current"
                 className="manage-reviews-current menu-navLinks"
+                onClick={closeMenu}
               >
                 Manage Reviews
               </NavLink>
@@ -109,17 +111,20 @@ function ProfileButton({ user }) {
               <span className="fa-solid fa-arrow-right-to-bracket"></span>
               <OpenModalButton
                 buttonText="Log In"
-                onItemClick={closeMenu}
+                // onItemClick={closeMenu}
                 modalComponent={<LoginFormModal />}
+                onClose={() => setShowMenu(false)}
+
               />
             </i>
 
             <i className="sign-up-container">
               <i className="fa-solid fa-user-plus"></i>
-              <OpenModalButton 
+              <OpenModalButton
                 buttonText="Sign Up"
                 onItemClick={closeMenu}
                 modalComponent={<SignupFormModal />}
+                onClose={() => setShowMenu(false)}
               />
             </i>
           </ul>
