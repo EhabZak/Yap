@@ -230,7 +230,7 @@ export const CreateListing = ({ user }) => {
               <label>Listing Category</label>
               <select onChange={(e) => setCategory(e.target.value)}>
                 <option value="0">Select Category</option>
-                <option value="listing">Listing</option>
+                <option value="restaurant">Restaurant</option>
                 <option value="shopping">Shopping</option>
                 <option value="nightlife">Nightlife</option>
                 <option value="active life">Active Life</option>
