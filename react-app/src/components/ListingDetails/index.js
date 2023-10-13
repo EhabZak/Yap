@@ -71,9 +71,9 @@ export const ListingDetails = () => {
         <p className="listing-subheader">
           <i className="fa-solid fa-star"></i>
           {oneListing.avg_rating > 0 ? <span>{oneListing.avg_rating.toFixed(1)}</span> : <span>New</span>}
+           {oneListing.avg_rating > 0? <span> ({oneListing.num_reviews } reviews)</span> : <span></span>}
           {/* {oneListing.avg_rating} */}
           {/* ({oneListing.num_reviews}{" "} ratings ) */}
-           {oneListing.avg_rating > 0? <span> ({oneListing.num_reviews } ratings)</span> : <span></span>}
 
         </p>
         <p>{oneListing.price === 3 ? "$$$" : oneListing.price === 2 ? "$$" : "$"}· {oneListing.category} </p>
