@@ -48,7 +48,7 @@ const ListingTile = ({ listing }) => {
         <div id="review-in-block"> <i className="fa-solid fa-star" id='review-rating-star'></i>
         {/* <div id="rating">{avg_rating}</div> */}
          {/* <div>({num_reviews} reviews)</div> */}
-         {avg_rating > 0 ? <div id="rating">{avg_rating.toFixed(1)}</div> : <div id="rating">New</div>}
+         {avg_rating > 0 ? <div id="rating">{avg_rating.toFixed(1)}</div> : <div id="rating"> New</div>}
            {avg_rating > 0? <div> ({num_reviews } reviews)</div> : <div></div>}
          </div>
 
