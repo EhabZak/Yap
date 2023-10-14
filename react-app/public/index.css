@@ -1,0 +1,64 @@
+body{
+    font-family: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif;
+  }
+
+  .footer{
+    font-family: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif;
+    background-color:rgb(236, 234, 234) ;
+    height: 200px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+  }
+
+
+
+  .footer-row-2{
+    display: flex;
+    flex-direction: column;
+    /* padding: 35px 25px; */
+    justify-content: space-between;
+    font-size: 14px;
+    margin-right: 10px;
+    color: darkgrey ;
+
+  }
+
+
+
+  .footer-social-links{
+    text-decoration: none;
+    color: darkgrey;
+    margin: 0 5px;
+    /* padding: 5px; */
+  }
+
+  .footer-social-links:hover{
+    color: white;
+    background-color: rgba(224,7,7,1);
+    border-radius: 10px;
+  }
+
+  .fa-brands{
+    font-size: 30px;
+    color: rgba(224,7,7,1);
+    /* background-color: blue; */
+  }
+  .footer-logo{
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .footer-row-1-left-section{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .footer-row-2-left-section{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+  }
