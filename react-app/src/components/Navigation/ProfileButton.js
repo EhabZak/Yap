@@ -67,7 +67,12 @@ function ProfileButton({ user }) {
 
               <div className="create-container">
                 <div className="menu-logo"> <FontAwesomeIcon icon={faPlus} /></div>
-                <div> <NavLink className="create-new-listing menu-navLinks" to="/listings/new">
+                <div> <NavLink
+                exact
+                to="/listings/new"
+                className="create-new-listing menu-navLinks"
+                onClick={closeMenu}
+                >
                   Add a Business
                 </NavLink> </div>
               </div>
