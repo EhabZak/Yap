@@ -79,6 +79,11 @@ function ProfileButton({ user }) {
             ) : (
               ""
             )}
+            <li>
+              <NavLink exact to="/account/current" className="manage-account menu-navLinks">
+                Manage Account
+              </NavLink>
+            </li>
             <div className="create-container">
               <div className="menu-logo">< FontAwesomeIcon icon={faGear} /></div>
               <div><NavLink

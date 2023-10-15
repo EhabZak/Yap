@@ -1,7 +1,9 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const UPDATE_ACCOUNT = "session/UPDATE_ACCOUNT";
 
+// action creators
 const setUser = (user) => ({
 	type: SET_USER,
 	payload: user,
@@ -11,7 +13,14 @@ const removeUser = () => ({
 	type: REMOVE_USER,
 });
 
+const updateUser = (user) => ({
+	type: UPDATE_ACCOUNT,
+	payload: user,
+  });
+
 const initialState = { user: null };
+
+// Thunks
 
 export const authenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/", {
@@ -93,6 +102,44 @@ export const signUp = (username, email, password) => async (dispatch) => {
 		return ["An error occurred. Please try again."];
 	}
 };
+// update and delete
+
+export const updateAccount =
+  (username, email, password, userId) => async (dispatch) => {
+    const response = await fetch(`/api/auth/${userId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        email,
+        password,
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(updateUser(data));
+      return data;
+    } else {
+      const errors = await response.json();
+      return errors;
+    }
+  };
+
+  export const deleteAccount = (userId) => async (dispatch) => {
+	const response = await fetch(`/api/auth/${userId}`, {
+	  method: "DELETE",
+	});
+
+	if (response.ok) {
+	  dispatch(removeUser());
+	}
+  };
+
+
+// Reducer
 
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
@@ -100,7 +147,12 @@ export default function reducer(state = initialState, action) {
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
+// added the update
+		case UPDATE_ACCOUNT:
+			return { ...state, user: action.payload };
+
 		default:
 			return state;
+
 	}
 }

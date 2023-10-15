@@ -18,6 +18,8 @@ import { ActiveLifeListings } from "./components/categories/activeLife";
 import { SpaListings } from "./components/categories/spa";
 import { AutomotiveListings } from "./components/categories/automotive";
 import { HomeServicesListings } from "./components/categories/homeServices";
+import { UpdateAccount } from "./components/ManageAccount/UpdateAccount";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +44,9 @@ function App() {
           </Route>
           <Route exact path="/listings/new">
             <CreateListing/>
+          </Route>
+          <Route exact path="/account/current">
+            <UpdateAccount />
           </Route>
           <Route exact path="/listings/current">
             <ManageListings />
