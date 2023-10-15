@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
+from app.forms import UpdateAccountForm
 from flask_login import current_user, login_user, logout_user, login_required
 
 auth_routes = Blueprint('auth', __name__)
@@ -80,3 +81,44 @@ def unauthorized():
     Returns unauthorized JSON when flask-login authentication fails
     """
     return {'errors': ['Unauthorized']}, 401
+
+#! update the user
+
+@auth_routes.route('/<int:userId>', methods=['PUT'])
+@login_required
+def update_account(userId):
+    """
+    Updates the user's account information.
+    """
+    # form = SignUpForm()
+    form = UpdateAccountForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    account_to_update = User.query.get(userId)
+
+    if form.validate_on_submit():
+        account_to_update.username=form.data['username']
+        account_to_update.email=form.data['email']
+        account_to_update.password=form.data['password']
+        db.session.commit()
+        return account_to_update.to_dict(), 201
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@auth_routes.route('/<int:userId>', methods=['DELETE'])
+@login_required
+def delete_account(userId):
+    """
+    Deletes the user's account.
+    """
+    user_to_delete = User.query.get(userId)
+
+    if user_to_delete:
+        if user_to_delete.id == current_user.id:
+            db.session.delete(user_to_delete)
+            db.session.commit()
+            return {'message': 'Account deleted'}, 200
+        else:
+            return {'errors': ['Unauthorized to delete this account']}, 403
+    else:
+        return {'errors': ['User not found']}, 404
