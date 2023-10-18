@@ -77,8 +77,9 @@ export const thunkCreateListing = (listing, user) => async (dispatch) => {
   try {
     const res = await csrfFetch("/api/listings/", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(listing),
+      // headers: { "Content-Type": "application/json" },
+      // body: JSON.stringify(listing),
+      body: listing
     });
 
     const data = await res.json();

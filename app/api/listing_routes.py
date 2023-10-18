@@ -6,7 +6,7 @@ from ..forms.review_form import ReviewForm
 from datetime import date
 
 from flask_login import current_user, login_required
-
+from .aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 listing_routes = Blueprint('listing', __name__)
 
@@ -96,6 +96,7 @@ def get_owned_listings():
 
     return { "listings": owned_listings }
 
+#! Create Listing ///////////////////////////////////////////////////////////////////////////
 
 @listing_routes.route('/', methods=["POST"])
 @login_required
@@ -110,6 +111,15 @@ def create_listing():
 
     if form.validate_on_submit():
 
+        image_url = form.data["image_url"]
+        image_url.filename = get_unique_filename(image_url.filename)
+        upload = upload_file_to_s3(image_url)
+
+        print(upload)
+
+        if "url" not in upload:
+            return { "errors": "Error uploading image to S3" }, 400 #! check if this is correct?
+
         new_listing = Listing(
             owner_id=current_user.id, #! this is where the owner id is coming from not from the front end
             address=form.data["address"],
@@ -121,7 +131,10 @@ def create_listing():
             price=form.data["price"],
             open_hours=form.data["open_hours"],
             close_hours=form.data["close_hours"],
-            image_url=form.data["image_url"],
+
+            # image_url=form.data["image_url"],
+            image_url=upload["url"],
+
             created_at = date.today(),
             updated_at = date.today()
         )
@@ -132,9 +145,9 @@ def create_listing():
     else:
         print(form.errors)
         return { "errors": form.errors }, 400
+#! //////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-@listing_routes.route("/<int:listingId>", methods=["PUT"])
+@listing_routes.route("/<int:listingId>", methods=["PUT"]) #! I need to find how to update the AWS image here
 @login_required
 def update_listing(listingId):
     """
@@ -179,9 +192,16 @@ def delete(listingId):
 
     if listing_to_delete:
         if listing_to_delete.owner_id == current_user.id:
-            db.session.delete(listing_to_delete)
-            db.session.commit()
-            return { "message": "Delete successful!" }
+
+            file_delete =remove_file_from_s3(listing_to_delete.image_url)
+            print("file delete", file_delete)
+
+            if file_delete is True:
+                db.session.delete(listing_to_delete)
+                db.session.commit()
+                return { "message": "Delete successful!" }
+            else:
+                return {"error": "failed to delete the file from S3"}, 500
         else:
             return { "message": "FORBIDDEN" }, 403
     else:

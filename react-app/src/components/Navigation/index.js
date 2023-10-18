@@ -17,8 +17,8 @@ function Navigation({ isLoaded }){
 				</NavLink>
 			</li>
 			<i id='info-header'> <p>Find me on:</p>
-			<a class="fa-brands fa-square-github" href="https://github.com/EhabZak"></a>
-			<a class="fa-brands fa-linkedin" href=" https://www.linkedin.com/in/zak-alashqar/"></a>
+			<a className="fa-brands fa-square-github" href="https://github.com/EhabZak"></a>
+			<a className="fa-brands fa-linkedin" href=" https://www.linkedin.com/in/zak-alashqar/"></a>
 				 </i>
 			{isLoaded && (
 				<li>
