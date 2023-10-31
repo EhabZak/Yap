@@ -75,7 +75,7 @@ export const thunkGetListingInfo = (listingId) => async (dispatch) => {
 
 export const thunkCreateListing = (listing, user) => async (dispatch) => {
   try {
-    const res = await csrfFetch("/api/listings/", {
+    const res = await fetch("/api/listings/", {
       method: "POST",
       // headers: { "Content-Type": "application/json" },
       // body: JSON.stringify(listing),
@@ -83,7 +83,7 @@ export const thunkCreateListing = (listing, user) => async (dispatch) => {
     });
 
     const data = await res.json();
-    console.log("data ======*******", data)
+    console.log("data +++++++*******", data)
     return data;
 
 

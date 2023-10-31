@@ -117,6 +117,8 @@ def create_listing():
 
         print(upload)
 
+        print ("url")
+
         if "url" not in upload:
             return { "errors": "Error uploading image to S3" }, 400 #! check if this is correct?
 
