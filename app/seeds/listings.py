@@ -198,8 +198,76 @@ def seed_listings():
         close_hours="6:00",
         image_url="https://s3-media0.fl.yelpcdn.com/bphoto/PL3lQgpk2fNNEQDDeV64tw/o.jpg"
         )
+    #! additional seeds
+    starbucks = Listing(
+        owner_id=3,
+        address="1390 Market Street",
+        city="San Francisco",
+        state="California",
+        name="Starbucks",
+        category="restaurant",
+        description= "Starbucks serves handcrafted American food and drink with seasonally-inspired ingredients. It is specialized in great coffee",
+        price=2,
+        open_hours="10:00",
+        close_hours="6:00",
+        image_url="https://tb-static.uber.com/prod/image-proc/processed_images/cc2c3b81f1e02e1dcbffa7e0c9fdd2a1/3ac2b39ad528f8c8c5dc77c59abb683d.jpeg"
+        )
+    dunkin = Listing(
+        owner_id=2,
+        address="180 S. Airport Blvd",
+        city="San Francisco",
+        state="California",
+        name="Lazy Dog Restaurant & Bar",
+        category="Dunkin",
+        description= "Dunkin serves handcrafted American food and drink with seasonally-inspired ingredients. It is specialized in donuts and great coffee",
+        price=1,
+        open_hours="10:00",
+        close_hours="10:00",
+        image_url="https://tb-static.uber.com/prod/image-proc/processed_images/df2de7977509b3697cd12d679c8571c2/3ac2b39ad528f8c8c5dc77c59abb683d.jpeg"
+        )
+    round_table = Listing(
+        owner_id=3,
+        address="801 Van Ness Ave",
+        city="San Francisco",
+        state="California",
+        name="Round Table Pizza",
+        category="restaurant",
+        description= "Round Table Pizza serves handcrafted American food and drink with seasonally-inspired ingredients. It is a great Pizza shop",
+        price=1,
+        open_hours="10:00",
+        close_hours="11:00",
+        image_url="hhttps://d1ralsognjng37.cloudfront.net/040383f7-d215-4457-aaf0-eaffcc0b911d.jpeg"
+        )
+    pizza_hut = Listing(
+        owner_id=2,
+        address="553 El Camino Real",
+        city="San Francisco",
+        state="California",
+        name="Pizza Hut",
+        category="restaurant",
+        description= "Pizza Hut serves handcrafted American food and drink with seasonally-inspired ingredients. It is the best Pizza shop",
+        price=2,
+        open_hours="10:00",
+        close_hours="10:00",
+        image_url="https://tb-static.uber.com/prod/image-proc/processed_images/b0fc9bc24d1656626221131e1aefe4fb/3ac2b39ad528f8c8c5dc77c59abb683d.jpeg"
+        )
+    panera = Listing(
+        owner_id=3,
+        address="307 Gellert Blvd",
+        city="San Francisco",
+        state="California",
+        name="Panera",
+        category="restaurant",
+        description= "Panera serves handcrafted Breakfast and lunch with seasonally-inspired ingredients.",
+        price=2,
+        open_hours="10:00",
+        close_hours="8:00",
+        image_url="https://tb-static.uber.com/prod/image-proc/processed_images/5068731aed89cc0b39e6231f5ccb9bc2/3ac2b39ad528f8c8c5dc77c59abb683d.jpeg"
+        )
 
-    listings = [lazy_dog, in_n_out, the_habit, daiso_japan, westfield_centre, cityscape, cheaper_than_therapy, twin_peaks, dogpatch_boulders, sen_spa, kabuki_spa, sunset_76, international_motors, peace_by_piece, architect]
+
+
+    listings = [lazy_dog, in_n_out, the_habit, daiso_japan, westfield_centre, cityscape, cheaper_than_therapy, twin_peaks, dogpatch_boulders, sen_spa, kabuki_spa, sunset_76, international_motors, peace_by_piece, architect, starbucks,dunkin, round_table, pizza_hut,panera]
     add_listing = [db.session.add(listing) for listing in listings]
     db.session.commit()
 
