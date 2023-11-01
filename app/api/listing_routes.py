@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request, redirect
-from app.models import db, Listing, User, Review
+from app.models import db, Listing, User, Review, MenuItem
 from ..forms.listing_form import ListingForm
-
+from ..forms.menu_item_form import MenuItemForm
 from ..forms.review_form import ReviewForm
 from datetime import date
 
@@ -160,10 +160,29 @@ def update_listing(listingId):
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     listing_to_update = Listing.query.get(listingId)
-    print( "listing_to_update =======>>" , listing_to_update)
-    print( "current_user.id +++++++++>>" , current_user.id)
+    # print( "listing_to_update =======>>" , listing_to_update)
+    # print( "current_user.id +++++++++>>" , current_user.id)
+
     if listing_to_update.owner_id == current_user.id:
+        # Delete associated S3 files
+        remove_file_from_s3(listing_to_update.image_url)
+
         if form.validate_on_submit():
+            image = form.data["image_url"]
+            image.filename = get_unique_filename(image.filename)
+
+            # Upload the image to S3
+            upload = upload_file_to_s3(image)
+            print(upload)
+
+            if 'url' not in upload:
+                return { "errors": "Error uploading image to S3" }, 400
+
+            # Use the S3 URL
+            image_url = upload['url']
+
+
+
             listing_to_update.address = form.data["address"]
             listing_to_update.city = form.data["city"]
             listing_to_update.state = form.data["state"]
@@ -173,11 +192,13 @@ def update_listing(listingId):
             listing_to_update.price = form.data["price"]
             listing_to_update.open_hours = form.data["open_hours"]
             listing_to_update.close_hours = form.data["close_hours"]
-            listing_to_update.image_url = form.data["image_url"]
+            listing_to_update.image_url = image_url
+
             db.session.commit()
             return listing_to_update.to_dict()
 
         else:
+            print(form.errors)
             return { "errors": form.errors }, 400
 
     else:
@@ -188,7 +209,7 @@ def update_listing(listingId):
 @login_required
 def delete(listingId):
     """
-    Delete a listing
+    Delete a listing and associated S3 files
     """
     listing_to_delete = Listing.query.get(listingId)
 
