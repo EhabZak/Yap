@@ -21,7 +21,7 @@ import { HomeServicesListings } from "./components/categories/homeServices";
 import { UpdateAccount } from "./components/ManageAccount/UpdateAccount";
 //!  menu item////////////////////////
 // we need routes for update , create but for menu item detail there is no need
-// import { MenuItemDetails } from "./components/MenuItemDetails"; we don't need this one we don't have detail page
+import { MenuItemDetails } from "./components/MenuItemDetails";
 import { CreateMenuItem } from "./components/MenuItems/CreateMenuItem";
 import { GetMenuItemToUpdate } from "./components/MenuItems/GetMenuItemToUpdate";
 
@@ -69,7 +69,7 @@ function App() {
             <CreateMenuItem />
             </Route>
 
-          <Route exact path="/listings/:menuItemId/edit">
+          <Route exact path="/menuitems/:menuItemId/edit">
             {/* <Navigation isLoaded={isLoaded} searchType={'none'}/> */}
             <GetMenuItemToUpdate/>
           </Route>
@@ -98,7 +98,9 @@ function App() {
           <Route exact path="/homeservices">
             <HomeServicesListings />
           </Route>
-
+          <Route exact path="/menuitems/:menuItemId">
+            <MenuItemDetails />
+          </Route>
         </Switch>
       )}
     </>

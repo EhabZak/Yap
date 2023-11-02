@@ -43,7 +43,7 @@ export const ListingDetails = () => {
 
   //! Menu item //////////////////////////////
     const handleClick = () => {
-      // tbd
+      
       history.push(`/listings/${listingId}/createmenuitem`);
     };
 //! //////////////////////////////////

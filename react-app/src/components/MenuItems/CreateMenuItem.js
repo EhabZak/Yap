@@ -18,7 +18,9 @@ export const CreateMenuItem = ({ user }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const { restaurantId } = useParams();
+  const { listingId } = useParams();
+
+  console.log("listing ID =========>>>", listingId)
 
   useEffect(() => {
     const errors = {};
@@ -51,7 +53,7 @@ export const CreateMenuItem = ({ user }) => {
 
     if (!Object.values(errors).length) {
       const addMenuItem = await dispatch(
-        thunkCreateMenuItem(formData, restaurantId)
+        thunkCreateMenuItem(formData, listingId)
       );
 
       const combinedErrors = { ...errors, Errors: addMenuItem.errors };
@@ -59,7 +61,9 @@ export const CreateMenuItem = ({ user }) => {
       if (addMenuItem.errors) {
         setErrors(combinedErrors);
       } else {
-        history.push(`/menuitems/${addMenuItem.id}`);
+        // history.push(`/menuitems/${addMenuItem.id}`);
+        history.push(`/listings/${listingId}`);
+        //! I need to add the detailed item page
       }
     }
     setIsSubmitting(false);
@@ -132,8 +136,8 @@ export const CreateMenuItem = ({ user }) => {
           </div>
         </div>
 
-        <div className="description-container">
-          <div className="description-container create-label-container">
+        <div className="description-container2">
+          <div className="description-container2 create-label-container">
             <label>Item Description</label>
             <textarea
               value={description}
@@ -146,7 +150,7 @@ export const CreateMenuItem = ({ user }) => {
           </div>
         </div>
 
-        <div className="images-container ">
+        <div className="images-container2 ">
           <p>Submit a link to one photo to create your menu item.</p>
           <div className="image-url-container">
             <input id="image-input"

@@ -1,8 +1,12 @@
 .menu-item-tile-container{
-    width: 200px;
+    width: 100%;
     height: 100%;
     padding: 2px;
     transition: box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .menu-item-tile-container:hover{
@@ -12,8 +16,9 @@
 
   .menu-item-tile-image{
     height: 200px;
-    width: 200px;
+    width: 250px;
     object-fit: cover;
+    margin-top: 36.5px;
   }
 
   .menu-item-tile-info{
@@ -39,6 +44,23 @@
     justify-content: center;
     margin-top: 7px;
   }
+
+  .menu-item-tile-delete-button button{
+    border: none;
+  background-color: rgba(224,7,7,1);
+  color: rgba(255,255,255,1);
+  width: 56.35px;
+  border-radius: 4px;
+  height: 35px;
+  font-family: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif !important;;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  margin-right: 10px ;
+  transition: background-color 0.3s;
+  }
 #menu-item-container{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

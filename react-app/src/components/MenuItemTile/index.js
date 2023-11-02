@@ -11,6 +11,10 @@ const MenuItemTile = ({ menuItem, listingId }) => {
   const handleClick = () => {
     history.push(`/menuitems/${id}`);
   };
+  const handleUpdateItemClick = (listingId) => {
+    // history.push(`/listings/${listingId}/edit`);
+    history.push(`/menuitems/${menuItem.id}/edit`);
+  };
 
   const listing = useSelector((state) => state.listing.singleListing);
 
@@ -40,10 +44,21 @@ const MenuItemTile = ({ menuItem, listingId }) => {
       </div>
       <div className="menu-item-tile-delete-button">
         {currentUser && listing.owner_id === currentUser.id && (
+          <div>
+          <button
+                className="manage-listings-update-button"
+                onClick={() => handleUpdateItemClick(listing.id)}
+              >
+                Update
+              </button>
+
+
+
           <OpenModalButton
             buttonText="Delete"
             modalComponent={<DeleteMenuItemModal menuItemId={menuItem.id} />}
           />
+          </div>
         )}
       </div>
     </div>
