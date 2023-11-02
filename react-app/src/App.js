@@ -19,7 +19,13 @@ import { SpaListings } from "./components/categories/spa";
 import { AutomotiveListings } from "./components/categories/automotive";
 import { HomeServicesListings } from "./components/categories/homeServices";
 import { UpdateAccount } from "./components/ManageAccount/UpdateAccount";
+//!  menu item////////////////////////
+// we need routes for update , create but for menu item detail there is no need
+// import { MenuItemDetails } from "./components/MenuItemDetails"; we don't need this one we don't have detail page
+import { CreateMenuItem } from "./components/MenuItems/CreateMenuItem";
+import { GetMenuItemToUpdate } from "./components/MenuItems/GetMenuItemToUpdate";
 
+//! //////////////////////////////////
 
 function App() {
   const dispatch = useDispatch();
@@ -57,6 +63,17 @@ function App() {
           <Route exact path="/listings/:listingId/edit">
             <GetListingToUpdate/>
           </Route>
+
+          <Route exact path="/listings/:listingId/createmenuitem">
+            {/* <Navigation isLoaded={isLoaded} searchType={'none'}/> */}
+            <CreateMenuItem />
+            </Route>
+
+          <Route exact path="/listings/:menuItemId/edit">
+            {/* <Navigation isLoaded={isLoaded} searchType={'none'}/> */}
+            <GetMenuItemToUpdate/>
+          </Route>
+
           <Route exact path="/listings/:listingId">
             <ListingDetails />
           </Route>

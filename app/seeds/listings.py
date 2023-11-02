@@ -40,7 +40,7 @@ def seed_listings():
         price=2,
         open_hours="10:00",
         close_hours="10:00",
-        image_url="https://s3-media0.fl.yelpcdn.com/bphoto/UlCNUQ62zanjCYGzx1l8Eg/o.jpg"
+        image_url="https://s3-media0.fl.yelpcdn.com/bphoto/FW2y24FS9ZF3cM6JDSft_Q/o.jpg"
         )
     daiso_japan = Listing(
         owner_id=3,
@@ -236,7 +236,7 @@ def seed_listings():
         price=1,
         open_hours="10:00",
         close_hours="11:00",
-        image_url="hhttps://d1ralsognjng37.cloudfront.net/040383f7-d215-4457-aaf0-eaffcc0b911d.jpeg"
+        image_url="https://s3-media0.fl.yelpcdn.com/bphoto/F7Os8KVGNJOXmf20d9oDvw/o.jpg"
         )
     pizza_hut = Listing(
         owner_id=2,
