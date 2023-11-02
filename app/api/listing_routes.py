@@ -149,7 +149,7 @@ def create_listing():
         return { "errors": form.errors }, 400
 #! //////////////////////////////////////////////////////////////////////////////////////////////////
 
-@listing_routes.route("/<int:listingId>", methods=["PUT"]) #! I need to find how to update the AWS image here
+@listing_routes.route("/<int:listingId>", methods=["PUT"]) #! I need to find how to update the AWS image here / I did update it with AWS need to check if it works
 @login_required
 def update_listing(listingId):
     """
@@ -270,6 +270,65 @@ def create_review(listingId):
         db.session.commit()
         return new_review.to_dict(), 201
 
+    else:
+        print(form.errors)
+        return { "errors": form.errors }, 400
+
+#! MENU ITEM ////////////////////////////////////////////////
+
+@listing_routes.route('/<int:listingId>/menuitems')
+#/api/listings/:listingId/menuitems
+def get_listing_menu_items(listingId):
+    """
+    Query for all menu items for a specific listing
+    """
+
+    all_menu_items = MenuItem.query.all()
+
+    listing_menu_items = [menu_item.to_dict() for menu_item in all_menu_items if menu_item.listingId == listingId]
+
+    return listing_menu_items
+
+@listing_routes.route('/<int:listingId>/createmenuitem', methods=["POST"])
+#/api/listings/:listingId/createmenuitem
+@login_required
+def create_menu_item(listingId):
+    """
+    Route to post a new menu item
+    """
+    form = MenuItemForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        image = form.data["imageUrl"]
+        image.filename = get_unique_filename(image.filename)
+
+        # Upload the image to S3
+        upload = upload_file_to_s3(image)
+        print(upload)
+
+        if 'url' not in upload:
+            return { "errors": "Error uploading image to S3" }, 400
+
+        # Use the S3 URL
+        image_url = upload['url']
+
+        new_menu_item = MenuItem(
+            listingId=listingId,
+            name=form.data["name"],
+            size=form.data["size"],
+            calories=form.data["calories"],
+            price=form.data["price"],
+            description=form.data["description"],
+            # Use the S3 URL
+            imageUrl=image_url,
+            created_at = date.today(),
+            updated_at = date.today()
+        )
+
+        db.session.add(new_menu_item)
+        db.session.commit()
+        return new_menu_item.to_dict(), 201
     else:
         print(form.errors)
         return { "errors": form.errors }, 400
