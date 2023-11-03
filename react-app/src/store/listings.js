@@ -1,6 +1,6 @@
 import { csrfFetch } from "./csrf";
 
-// TYPE CONSTANTS
+//! TYPE CONSTANTS
 
 const GET_LISTINGS = "listings/getListings";
 const GET_LISTING = "listings/getListing";
@@ -8,7 +8,7 @@ const CREATE_LISTING = "listings/createListing";
 const UPDATE_LISTING = "listings/updateListing";
 const DELETE_LISTING = "listings/deleteListing";
 
-// ACTION CREATORS
+//! ACTION CREATORS
 
 const getListings = (listings) => {
   return {
@@ -45,7 +45,7 @@ const deleteListing = (listingId) => {
   };
 };
 
-//! THUNK ACTION CREATORS
+//! THUNK
 
 export const thunkGetListings = () => async (dispatch) => {
   const res = await csrfFetch("/api/listings");
@@ -83,13 +83,13 @@ export const thunkCreateListing = (listing, user) => async (dispatch) => {
     });
 
     const data = await res.json();
-    console.log("data +++++++*******", data)
+    // console.log("data +++++++*******", data)
     return data;
 
 
   }catch (error) {
     const errors = await error.json();
-      console.log("errors ======*******" , errors)
+      // console.log("errors ======*******" , errors)
       throw errors;
 
   }
@@ -130,10 +130,11 @@ export const thunkGetUserListings = () => async (dispatch) => {
 
 export const thunkUpdateListing =
   (listing, listingId) => async (dispatch) => {
-    const res = await csrfFetch(`/api/listings/${listingId}`, {
+    const res = await fetch(`/api/listings/${listingId}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(listing),
+      // headers: { "Content-Type": "application/json" },
+      // body: JSON.stringify(listing),
+      body: listing,
     });
 
     if (res.ok) {

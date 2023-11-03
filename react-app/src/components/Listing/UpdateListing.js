@@ -62,13 +62,7 @@ export const UpdateListing = ({ listing }) => {
     if (!open_hours) errors.open_hours = "Open hours is required";
     if (!close_hours) errors.close_hours = "Close hours is required";
     if (!image_url) errors.image_url = "Preview image is required";
-    if (
-      image_url &&
-      !image_url.endsWith("jpg") &&
-      !image_url.endsWith("jpeg") &&
-      !image_url.endsWith("png")
-    )
-      errors.image_url = "Image URL must end in .png, .jpg, or .jpeg";
+
 
     setErrors(errors);
   }, [
@@ -91,24 +85,35 @@ export const UpdateListing = ({ listing }) => {
     // setIsSubmitting(true);
     setSubmitted(true);
     // setErrors({})
+    const formData = new FormData();
+    formData.append("address", address)
+    formData.append("city", city)
+    formData.append("state", state)
+    formData.append("name", name)
+    formData.append("category", category)
+    formData.append("description", description)
+    formData.append("price", price)
+    formData.append("open_hours", open_hours)
+    formData.append("close_hours", close_hours)
+    formData.append("image_url", image_url)
 
-    const updatedListing = {
-      address,
-      city,
-      state,
-      name,
-      category,
-      description,
-      price,
-      open_hours,
-      close_hours,
-      image_url,
-    };
+    // const updatedListing = {
+    //   address,
+    //   city,
+    //   state,
+    //   name,
+    //   category,
+    //   description,
+    //   price,
+    //   open_hours,
+    //   close_hours,
+    //   image_url,
+    // };
     // console.log("errors =======>>>>>>>>>>>", errors )
     if (!Object.values(errors).length) {
       try {
         const updateListing = await dispatch(
-          thunkUpdateListing(updatedListing, listing.id)
+          thunkUpdateListing(formData, listing.id)
         );
         if (updateListing && !updateListing.errors) {  //! check this if there function is not working
 
@@ -119,7 +124,7 @@ export const UpdateListing = ({ listing }) => {
         if (error.errors) {
           // const combinedErrors = { ...errors, errors: error.errors };
 
-          console.log("errors ++++++++++++++>>>", error.errors)
+          // console.log("errors ++++++++++++++>>>", error.errors)
           setBackendErrors(error.errors);
         }
 
@@ -335,10 +340,13 @@ export const UpdateListing = ({ listing }) => {
           <p>Submit a link to at least one photo to publish your listing.</p>
           <div className="image-url-container label-container">
             <input
-              type="url"
-              value={image_url}
-              onChange={(e) => setImageUrl(e.target.value)}
-              placeholder="Preview Image URL"
+              // type="url"
+              // value={image_url}
+              type="file"
+              accept="image/*"
+              onChange={(e) => setImageUrl(e.target.files[0])}
+              // onChange={(e) => setImageUrl(e.target.value)}
+              // placeholder="Preview Image URL"
             />
             {errors.image_url && submitted && (
               <p className="on-submit-errors">{errors.image_url}</p>

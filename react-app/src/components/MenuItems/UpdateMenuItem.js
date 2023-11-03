@@ -18,7 +18,7 @@ export const UpdateMenuItem = ({menuItem}) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-//   const { restaurantId } = useParams(); we don't have it in update
+//   const { listingId } = useParams(); we don't have it in update
 
 useEffect(() => {
     setName(menuItem.name);
@@ -33,12 +33,12 @@ useEffect(() => {
     const errors = {};
 
     if (!name) errors.name = "Name is required";
-    if (!name || name.length < 2)
-      errors.name = "Name needs to be 2 or more characters";
-    if (name.length > 29) errors.name = "Name must be less than 30 characters";
-    if (size.length > 20) errors.size = "Size must be less than 20 characters";
-    if (calories < 0) errors.calories = "Calories must be zero or greater";
-    if (!price || price < 0) errors.price = "Valid price is required";
+    if (name && name.length < 2) errors.name = "Name needs to be 2 or more characters";
+    if (name && name.length > 29) errors.name = "Name must be less than 30 characters";
+    if (size && size.length > 20) errors.size = "Size must be less than 20 characters";
+    if (calories && calories < 0) errors.calories = "Calories must be zero or greater";
+    if (!price) errors.price = "Valid price is required";
+    if (price && price < 0) errors.price = "Valid price is required";
     if (!imageUrl) errors.imageUrl = "Preview image is required";
 
     setErrors(errors);
