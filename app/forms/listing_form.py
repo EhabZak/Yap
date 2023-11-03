@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import SelectField, StringField, SubmitField, URLField, IntegerField, TextAreaField
 from wtforms.validators import DataRequired, Length, URL, NumberRange, ValidationError
 from flask_wtf.file import FileField, FileAllowed, FileRequired
-
+from app.api.aws_helpers import ALLOWED_EXTENSIONS
 
 category_types = [ "restaurant", "shopping", "nightlife", "active life", "Spa", "automotive", "home services", "Other" ]
 
@@ -22,9 +22,9 @@ hours = [
     "Open 24 hours"
     ]
 
-def my_url_validator(form, field):
-    if ".jpeg" not in field.data and ".jpg" not in field.data and ".png" not in field.data:
-        raise ValidationError("URL must contain .jpeg, .jpg, or .png")
+# def my_url_validator(form, field):
+#     if ".jpeg" not in field.data and ".jpg" not in field.data and ".png" not in field.data:
+#         raise ValidationError("URL must contain .jpeg, .jpg, or .png")
 
 
 class ListingForm(FlaskForm):
@@ -37,5 +37,6 @@ class ListingForm(FlaskForm):
     price = IntegerField("Price", validators=[DataRequired(), NumberRange(min=1, max=3, message="Price must be an integer between 1 and 3!")])
     open_hours = SelectField("Open Hours", choices=hours, validators=[DataRequired()])
     close_hours = SelectField("Closing Hour", choices=hours, validators=[DataRequired()])
-    image_url = URLField("Listing image", validators=[DataRequired()])
+    # image_url = URLField("Listing image", validators=[DataRequired()])
+    image_url = FileField("Image File", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
     submit = SubmitField("Create Listing")

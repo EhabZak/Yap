@@ -1,0 +1,41 @@
+.delete-modal-content2{
+    border:  solid 4px black;
+
+    font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* .yes-no-container2{
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+gap: 10px;
+margin-bottom: 20px;
+
+} */
+
+.yes-no-container2{
+  display: flex;
+  justify-content: center;
+
+}
+
+.yes-no-container2 button {
+  border: none;
+    background-color: rgba(224, 7, 7, 1);
+
+    color: rgba(255, 255, 255, 1);
+    width: 200px;
+    border-radius: 4px;
+    height: 40px;
+    font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    ;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+}
+.delete-menu_item-container{
+    margin-right: 20px;
+    margin-left: 20px;
+}

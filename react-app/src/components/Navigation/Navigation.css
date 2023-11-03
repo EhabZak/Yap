@@ -47,7 +47,7 @@ body {
 #menu-drop-down {
   background-color: white;
   z-index: 1;
-  height: 290px;
+  height: 300px;
   width: 170px;
   min-height: 150px;
   /* margin-left: 0px; */
@@ -63,8 +63,8 @@ body {
 }
 
 #menu-drop-down li {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   text-decoration: none;
 
 }

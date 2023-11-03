@@ -4,7 +4,10 @@ import { useParams } from "react-router-dom";
 
 import { thunkGetListingInfo } from "../../store/listings";
 import { thunkGetListingReviews } from "../../store/reviews";
-
+//!
+import { MenuItems } from "../MenuItems";
+// import OpenModalButton from "../OpenModalButton"; we don't need it i think
+//!
 import { ListingReviews } from "../ReviewsById";
 import { useHistory } from "react-router";
 //// import { setUser, thunkGetUserInfo } from "../../store/session";
@@ -38,11 +41,12 @@ export const ListingDetails = () => {
     // add to the dependancy array reviewsList.length
   }, [dispatch, listingId, reviewsList.length]);
 
-  //   const handleClick = () => {
-  //     // tbd
-  //     history.push(`/listings/${listingId}/createmenuitem`);
-  //   };
-
+  //! Menu item //////////////////////////////
+    const handleClick = () => {
+      
+      history.push(`/listings/${listingId}/createmenuitem`);
+    };
+//! //////////////////////////////////
   if (!oneListing.id) return null;
 
   //   const {
@@ -61,6 +65,8 @@ export const ListingDetails = () => {
   //     image_url,
   //   } = oneListing;
 
+
+
   return (
     <div className="view-listing-details">
 
@@ -68,16 +74,16 @@ export const ListingDetails = () => {
 
         <div className="listing-header">
           <h1>{oneListing.name}</h1>
-        <p className="listing-subheader">
-          <i className="fa-solid fa-star"></i>
-          {oneListing.avg_rating > 0 ? <span>{oneListing.avg_rating.toFixed(1)}</span> : <span> New</span>}
-           {oneListing.avg_rating > 0? <span> ({oneListing.num_reviews } reviews)</span> : <span></span>}
-          {/* {oneListing.avg_rating} */}
-          {/* ({oneListing.num_reviews}{" "} ratings ) */}
+          <p className="listing-subheader">
+            <i className="fa-solid fa-star"></i>
+            {oneListing.avg_rating > 0 ? <span>{oneListing.avg_rating.toFixed(1)}</span> : <span> New</span>}
+            {oneListing.avg_rating > 0 ? <span> ({oneListing.num_reviews} reviews)</span> : <span></span>}
+            {/* {oneListing.avg_rating} */}
+            {/* ({oneListing.num_reviews}{" "} ratings ) */}
 
-        </p>
-        <p>{oneListing.price === 3 ? "$$$" : oneListing.price === 2 ? "$$" : "$"}· {oneListing.category} </p>
-        <p>Hours: {oneListing.open_hours}  - {oneListing.close_hours}</p>
+          </p>
+          <p>{oneListing.price === 3 ? "$$$" : oneListing.price === 2 ? "$$" : "$"}· {oneListing.category} </p>
+          <p>Hours: {oneListing.open_hours}  - {oneListing.close_hours}</p>
         </div>
 
         <img
@@ -87,20 +93,42 @@ export const ListingDetails = () => {
           title={oneListing.name}
         ></img>
       </div>
-      <div className="listing-non-image-content">
+      {/* add the menu items*/}
 
-          <div className="listing-info-left-col">
-            <div className="listing-hours">
-              <h2>Location and Hours</h2>
-              <p>{oneListing.address}, {oneListing.city}, {oneListing.state} </p>
-              <p>Hours: {oneListing.open_hours}  - {oneListing.close_hours}</p>
-            </div>
-
-            <div className="listing-hours">
-              <h2>About the Business</h2>
-              {oneListing.description}
+      <div className="listing-info-right-col">
+            <div>
+              {currentUser && oneListing.owner_id === currentUser.id && (
+                <button
+                  className="create-menu-item-button"
+                  onClick={handleClick}
+                >
+                  Create New Menu Item
+                </button>
+              )}
             </div>
           </div>
+
+          <div className="listing-menu-items-grid">
+          <MenuItems listingId={listingId} />
+        </div>
+
+
+      {/* end of menu item */}
+
+      <div className="listing-non-image-content">
+
+        <div className="listing-info-left-col">
+          <div className="listing-hours">
+            <h2>Location and Hours</h2>
+            <p>{oneListing.address}, {oneListing.city}, {oneListing.state} </p>
+            <p>Hours: {oneListing.open_hours}  - {oneListing.close_hours}</p>
+          </div>
+
+          <div className="listing-hours">
+            <h2>About the Business</h2>
+            {oneListing.description}
+          </div>
+        </div>
 
 
         <div className="listing-details-reviews">

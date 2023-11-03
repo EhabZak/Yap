@@ -45,13 +45,7 @@ export const CreateListing = ({ user }) => {
     if (!open_hours) errors.open_hours = "Open hours is required";
     if (!close_hours) errors.close_hours = "Close hours is required";
     if (!image_url) errors.image_url = "Preview image is required";
-    if (
-      image_url &&
-      !image_url.endsWith("jpg") &&
-      !image_url.endsWith("jpeg") &&
-      !image_url.endsWith("png")
-    )
-      errors.image_url = "Image URL must end in .png, .jpg, or .jpeg";
+    
 
     setErrors(errors);
   }, [
@@ -75,24 +69,39 @@ export const CreateListing = ({ user }) => {
     setSubmitted(true);
     // setErrors({})
 
-    const newListing = {
-      address,
-      city,
-      state,
-      name,
-      category,
-      description,
-      price,
-      open_hours,
-      close_hours,
-      image_url,
-    };
+    const formData = new FormData();
+    formData.append("address", address)
+    formData.append("city", city)
+    formData.append("state", state)
+    formData.append("name", name)
+    formData.append("category", category)
+    formData.append("description", description)
+    formData.append("price", price)
+    formData.append("open_hours", open_hours)
+    formData.append("close_hours", close_hours)
+    formData.append("image_url", image_url)
+
+
+    // const newListing = {
+    //   address,
+    //   city,
+    //   state,
+    //   name,
+    //   category,
+    //   description,
+    //   price,
+    //   open_hours,
+    //   close_hours,
+    //   image_url,
+    // };
     // console.log("errors =======>>>>>>>>>>>", errors )
+
     if (!Object.values(errors).length) {
       try {
         const addListing = await dispatch(
-          thunkCreateListing(newListing, user)
+          thunkCreateListing(formData, user)
         );
+
         if (addListing && !addListing.errors) {
 
           history.push(`/listings/${addListing.id}`);
@@ -131,7 +140,11 @@ export const CreateListing = ({ user }) => {
     <div className="create-listing-form-container">
 
       <div id="form-outer-container">
-        <form onSubmit={handleSubmit} id='form-container'>
+        <form
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        id='form-container'
+        >
           <div id="form-inner-div">
           <h2>Add a New Business</h2>
           <div className="location-container">
@@ -333,12 +346,15 @@ export const CreateListing = ({ user }) => {
             <h3>Liven up your business with photos</h3>
             <p>Submit a link to at least one photo to publish your listing.</p>
             <div className="image-url-container label-container">
+
               <input
-                type="url"
-                value={image_url}
-                onChange={(e) => setImageUrl(e.target.value)}
-                placeholder="Preview Image URL"
+                type="file"
+                accept="image/*"
+                // value={image_url}
+                onChange={(e) => setImageUrl(e.target.files[0])}
+                // placeholder="Preview Image URL"
               />
+
               {errors.image_url && submitted && (
                 <p className="on-submit-errors">{errors.image_url}</p>
               )}

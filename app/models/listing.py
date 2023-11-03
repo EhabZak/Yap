@@ -27,6 +27,7 @@ class Listing(db.Model):
 
     user = db.relationship("User", back_populates = "listing")
     reviews = db.relationship("Review", back_populates = "listing", cascade="all, delete-orphan")
+    menu_item = db.relationship("MenuItem", back_populates="listing", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {

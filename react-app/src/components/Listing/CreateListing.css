@@ -89,7 +89,6 @@ select {
 }
 .description-container textarea{
     height: 100px;
-
     width: 100%;
     resize: none;
 
@@ -104,9 +103,7 @@ select {
 .create-listing-button {
     margin-top: 30px;
     box-shadow: 2px 2px;
-
     border: none;
-
     background-color: rgba(224,7,7,1);
     color: rgba(255,255,255,1);
     width: 250px;

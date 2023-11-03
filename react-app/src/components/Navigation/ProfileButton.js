@@ -13,6 +13,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
+import { faUserGear } from '@fortawesome/free-solid-svg-icons';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -79,6 +80,17 @@ function ProfileButton({ user }) {
             ) : (
               ""
             )}
+            <div className="create-container">
+            <div className="menu-logo"><FontAwesomeIcon icon={faUserGear} className="my-icon" /></div>
+            <div><NavLink
+              exact
+              to="/account/current"
+              className="manage-account menu-navLinks"
+              onClick={closeMenu}
+              >
+                Manage Account
+              </NavLink></div>
+              </div>
             <div className="create-container">
               <div className="menu-logo">< FontAwesomeIcon icon={faGear} /></div>
               <div><NavLink
