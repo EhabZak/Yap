@@ -91,7 +91,7 @@ export const thunkDeleteMenuItem = (menuItemId) => async (dispatch) => {
 
 export const thunkUpdateMenuItem =
   (menuItem, menuItemId) => async (dispatch) => {
-    const res = await fetch(`/api/menuItems/${menuItemId}`, {
+    const res = await fetch(`/api/menuitems/${menuItemId}`, {
       method: "PUT",
     //   headers: { "Content-Type": "application/json" },
     //   body: JSON.stringify(listing),

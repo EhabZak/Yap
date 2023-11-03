@@ -18,7 +18,8 @@ export const UpdateMenuItem = ({menuItem}) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-//   const { listingId } = useParams(); we don't have it in update
+  const { listingId } = useParams();
+  // console.log("listing ID =========>>>", menuItem.listingId)
 
 useEffect(() => {
     setName(menuItem.name);
@@ -68,9 +69,9 @@ useEffect(() => {
       if (updateMenuItem.errors) {
         setErrors(combinedErrors);
       } else {
-        //! you need to update this after you prepare the detail item page
+
         // history.push(`/menuitems/${updateMenuItem.id}`);
-        history.push(`/`);
+        history.push(`/listings/${menuItem.listingId}`);
       }
     }
     setIsSubmitting(false);

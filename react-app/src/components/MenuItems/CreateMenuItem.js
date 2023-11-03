@@ -20,7 +20,7 @@ export const CreateMenuItem = ({ user }) => {
 
   const { listingId } = useParams();
 
-  console.log("listing ID =========>>>", listingId)
+  // console.log("listing ID =========>>>", listingId)
 
   useEffect(() => {
     const errors = {};
@@ -63,7 +63,7 @@ export const CreateMenuItem = ({ user }) => {
       } else {
         // history.push(`/menuitems/${addMenuItem.id}`);
         history.push(`/listings/${listingId}`);
-        //! I need to add the detailed item page
+        
       }
     }
     setIsSubmitting(false);
