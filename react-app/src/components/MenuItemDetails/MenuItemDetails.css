@@ -4,8 +4,9 @@
   align-items: center;
   /* justify-content: center; */
   /* height: 500px; */
-  height: 100vh;
-  background-color: lightblue;
+  height: 70vh;
+  /* background-color: lightblue; */
+  margin-top: 60px;
 }
 
 
@@ -30,8 +31,10 @@
   }
 
   .menu-item-image{
-    width: 100%;
+    /* width: 100%; */
+    width: 330px;
     object-fit: contain;
+    max-height: 220px;
   }
 
   .menu-item-right-col{
