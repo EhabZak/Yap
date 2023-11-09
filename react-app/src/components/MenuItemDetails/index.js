@@ -32,6 +32,9 @@ export const MenuItemDetails = () => {
   };
 
   return (
+    <>
+    <div id="menu-item-detail-container">
+
     <div className="view-menu-item-details">
       <div className="menu-item-left-col">
         <img className="menu-item-image" src={imageUrl} alt="main" />
@@ -45,15 +48,18 @@ export const MenuItemDetails = () => {
           ${Number.parseFloat(price).toFixed(2)}
         </p>
         {description && <p className="menu-item-description">{description}</p>}
-        <button
+        {/* <button
           // disabled={!sessionUser}
           className="buy-menu-item-button"
           onClick={onClick}
         >
           Buy Now <span style={{ fontWeight: "bold" }}>&#183;</span> $
           {Number.parseFloat(price).toFixed(2)}
-        </button>
+        </button> */}
       </div>
     </div>
+    <div id="space"></div>
+    </div>
+    </>
   );
 };

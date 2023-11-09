@@ -43,7 +43,7 @@ export const ListingDetails = () => {
 
   //! Menu item //////////////////////////////
     const handleClick = () => {
-      
+
       history.push(`/listings/${listingId}/createmenuitem`);
     };
 //! //////////////////////////////////
@@ -97,6 +97,7 @@ export const ListingDetails = () => {
 
       <div className="listing-info-right-col">
             <div>
+
               {currentUser && oneListing.owner_id === currentUser.id && (
                 <button
                   className="create-menu-item-button"
@@ -107,7 +108,7 @@ export const ListingDetails = () => {
               )}
             </div>
           </div>
-
+          
           <div className="listing-menu-items-grid">
           <MenuItems listingId={listingId} />
         </div>

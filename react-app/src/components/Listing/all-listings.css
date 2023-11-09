@@ -54,7 +54,8 @@ a,button {
    /* background-color: chartreuse; */
    display: flex;
    min-height: 100vh;
-   align-items: flex-start;
+   align-items: center;
+   justify-content: center;
 }
 
 

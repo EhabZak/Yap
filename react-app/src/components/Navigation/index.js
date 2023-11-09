@@ -16,10 +16,10 @@ function Navigation({ isLoaded }){
 				<img id="logo-image" src= {logo}alt="Logo"/>
 				</NavLink>
 			</li>
-			<i id='info-header'> <p>Find me on:</p>
+			{/* <i id='info-header'> <p>Find me on:</p>
 			<a className="fa-brands fa-square-github" href="https://github.com/EhabZak"></a>
 			<a className="fa-brands fa-linkedin" href=" https://www.linkedin.com/in/zak-alashqar/"></a>
-				 </i>
+				 </i> */}
 			{isLoaded && (
 				<li>
 					<ProfileButton user={sessionUser} />

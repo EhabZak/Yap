@@ -33,7 +33,8 @@ export const ManageReviews = () => {
 
     return (
         <div className="all-reviews-container">
-            <h1>Manage Your Reviews</h1>
+            <h1 id="reviews-header">Manage Your Reviews</h1>
+            <div>
             {reviewsList.map((review) => (
                 <div className="review-container" key={review.id}>
                     <div className="review-stars">
@@ -71,6 +72,7 @@ export const ManageReviews = () => {
                     </div>
                 </div>
             ))}
+            </div>
         </div>
     )
 }

@@ -1,9 +1,28 @@
+#menu-item-detail-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  /* height: 500px; */
+  height: 100vh;
+  background-color: lightblue;
+}
+
+
+
 .view-menu-item-details{
     display: flex;
+    /* justify-content: center; */
     font-family: 'Wix Madefor Display', sans-serif;
     max-width: 700px;
-    margin: 50px auto;
+    /* margin: 50px auto; */
+    height: 300px;
+
   }
+  /* #space{
+    flex: 1;
+    background-color: lightblue;
+  } */
 
   .menu-item-left-col{
     width: 50%;

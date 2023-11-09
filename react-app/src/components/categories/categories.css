@@ -2,6 +2,11 @@ a,button {
     cursor: pointer;
 }
 
+#outer-category-container{
+    display: flex;
+    justify-content: center;
+}
+
 #categories-bar-container{
     /* background-color: lightblue; */
     display: grid;
