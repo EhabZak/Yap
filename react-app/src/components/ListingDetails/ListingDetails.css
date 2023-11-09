@@ -5,6 +5,11 @@ body {
   a,button {
       cursor: pointer;
   }
+  .view-listing-details{
+   display: flex;
+   flex-direction:column;
+   align-items: center;
+  }
 
  #picture-banner{
     width: 100%;

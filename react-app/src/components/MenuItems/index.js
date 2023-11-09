@@ -18,6 +18,7 @@ export const MenuItems = ({ listingId }) => {
 
   return (
     <>
+    {menuItems.length >0 ? <h2>Menu Items</h2> : null}
       <div className="menu-item-grid-settings">
         {menuItems.map((menuItem) => (
           <MenuItemTile key={menuItem.id} menuItem={menuItem} />
